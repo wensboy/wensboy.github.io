@@ -23,11 +23,11 @@ info:
 # Docs: https://redefine-docs.ohevan.com/basic/defaults
 defaults:
   # Favicon
-  favicon: /images/redefine-favicon.svg
+  favicon: /images/wensblog-favicon.svg
   # Site logo
-  logo: 
+  logo: /images/wensblog-logo.svg
   # Site avatar
-  avatar: /images/redefine-avatar.svg
+  avatar: /images/wensblog-avatar.jpg
 # IMAGE CONFIGURATION <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< end
 
 
@@ -86,8 +86,8 @@ global:
   single_page: true
   # Whether to enable Preloader.
   preloader:
-    enable: false
-    custom_message: # Custom message. If empty, the site title will be displayed
+    enable: true
+    custom_message: wensblog # Custom message. If empty, the site title will be displayed
   # Whether to enable open graph
   open_graph: true
   # Google Analytics
@@ -120,14 +120,14 @@ home_banner:
   style: fixed # static or fixed
   # Home banner image
   image: 
-    light: /images/wallhaven-wqery6-light.webp # light mode
-    dark: /images/wallhaven-wqery6-dark.webp # dark mode
+    light: /images/wensblog-light.png # light mode
+    dark: /images/wensblog-dark.png # dark mode
   # Home banner title
-  title: Theme Redefine
+  title: welcome to wensblog
   # Home banner subtitle
   subtitle:
-    text: [] # subtitle text, array
-    hitokoto:  # 一言配置
+    text: ["a personal blog","find everything","and","create everything"] # subtitle text, array
+    hitokoto:  # 一言配置                                   
       enable: false # Whether to enable hitokoto
       show_author: false # Whether to show author
       api: https://v1.hitokoto.cn # API URL, can add types, see https://developer.hitokoto.cn/sentence/#%E5%8F%A5%E5%AD%90%E7%B1%BB%E5%9E%8B-%E5%8F%82%E6%95%B0
@@ -187,7 +187,7 @@ navbar:
   color:
     left: "#f78736" #left side 
     right: "#367df7"  #right side
-    transparency: 35 #percent (10-99)
+    transparency: 30 #percent (10-99)
   # Navbar width (usually no need to modify)
   width:
     home: 1200px #home page
@@ -196,7 +196,23 @@ navbar:
   links:
     Home: 
       path: / 
-      icon: fa-regular fa-house # can be empty
+      icon: fa-solid fa-house # can be empty
+      #just need to be ok?
+    TAGS:
+      path: /tags
+      icon: fa-solid fa-tag
+    # CATEGORIES:
+    #   path: /categories
+    #   icon: fa-solid fa-layer-group
+    Archives:
+      path: /archives
+      icon: fa-solid fa-box-archive
+    GITHUB: 
+      path: https://github.com/
+      icon: fa-brands fa-github
+    About:
+      path: /about
+      icon: fa-solid fa-user
     # Archives: 
     #   path: /archives 
     #   icon: fa-regular fa-archive # can be empty
@@ -210,9 +226,16 @@ navbar:
     #     Github: https://github.com/EvanNotFound/hexo-theme-redefine
     #     Blog: https://ohevan.com
     #     Friends: /friends
-    # Links: 
-    #   icon: fa-regular fa-link
-    #   submenus:
+
+    #websites collections 
+    Links: 
+      icon: fa-regular fa-link
+      submenus:
+        vercel: https://vercel.com
+        github: https://github.com
+        redefine-doc: https://redefine-docs.ohevan.com/en
+
+
     #     Link1: /link1
     #     Link2: /link2
     #     Link3: /link3
@@ -220,7 +243,7 @@ navbar:
   # Navbar search (local search). Requires hexo-generator-searchdb (npm i hexo-generator-searchdb). See https://github.com/theme-next/hexo-generator-searchdb
   search:
     # Whether to enable
-    enable: false
+    enable: true
     # Preload search data when the page loads
     preload: true
 # NAVIGATION BAR <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< end
@@ -234,23 +257,23 @@ home:
     enable: true # Whether to enable sidebar
     position: left # Sidebar position. left, right
     first_item: menu # First item in sidebar. menu, info
-    announcement: # Announcement text
+    announcement: discover # Announcement text
     show_on_mobile: true # Whether to show sidebar navigation on mobile sheet menu
     links:
-      # Archives: 
-      #   path: /archives 
-      #   icon: fa-regular fa-archive # can be empty
-      # Tags: 
-      #   path: /tags 
-      #   icon: fa-regular fa-tags # can be empty
-      # Categories: 
-      #   path: /categories 
-      #   icon: fa-regular fa-folder # can be empty
+      Archives: 
+        path: /archives 
+        icon: fa-regular fa-archive # can be empty
+      Tags: 
+        path: /tags 
+        icon: fa-regular fa-tags # can be empty
+      Categories: 
+        path: /categories 
+        icon: fa-regular fa-folder # can be empty
       # ...... # you can add more
   # Article date format
   article_date_format: auto # auto, relative, YYYY-MM-DD, YYYY-MM-DD HH:mm:ss etc.
   # Article excerpt length
-  excerpt_length: 200 # Max length of article excerpt
+  excerpt_length: 100 # Max length of article excerpt
   # Article categories visibility
   categories:
     enable: true  # Whether to enable
@@ -385,7 +408,7 @@ footer:
   # Icon in footer, write fontawesome icon code here
   icon: '<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>'
   # The start time of the website, format: YYYY/MM/DD HH:mm:ss
-  start: 2022/8/17 11:45:14
+  start: 2024/10/18 00:00:00
   # Site statistics
   statistics: true # show site statistics or not (total articles, total words)
   # Footer message
