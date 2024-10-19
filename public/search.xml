@@ -56,4 +56,27 @@
         <tag>github</tag>
       </tags>
   </entry>
+  <entry>
+    <title>git配置与使用</title>
+    <url>/2024/10/19/git-config/</url>
+    <content><![CDATA[<h2 id="下载并安装git"><a href="#下载并安装git" class="headerlink" title="下载并安装git"></a>下载并安装git</h2><p>前往<a class="link"   href="https://git-scm.com/" >Git官网 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>点击下载进入下载页面，根据自己的操作系统下载安装即可。</p>
+<p><strong>使用如下command查看是否成功安装git:</strong></p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">git --version</span><br></pre></td></tr></table></figure></div>
+
+
+  <div class="note p-4 mb-4 rounded-small info">
+    <p>提示：以下假设在设备上成功下载安装git,并配置好了相关环境变量。</p>
+
+  </div>
+
+<h2 id="配置git"><a href="#配置git" class="headerlink" title="配置git"></a>配置git</h2><h2 id="配置github"><a href="#配置github" class="headerlink" title="配置github"></a>配置github</h2><h2 id="常用Command"><a href="#常用Command" class="headerlink" title="常用Command"></a>常用Command</h2><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h2 id="相关"><a href="#相关" class="headerlink" title="相关"></a>相关</h2>]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>github</tag>
+        <tag>git</tag>
+        <tag>config</tag>
+      </tags>
+  </entry>
 </search>
