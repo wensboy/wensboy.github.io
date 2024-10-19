@@ -25,9 +25,9 @@ defaults:
   # Favicon
   favicon: /images/wensblog-favicon.svg
   # Site logo
-  logo: /images/wensblog-logo.svg
+  logo: /images/website/wensblog-logo.svg
   # Site avatar
-  avatar: /images/wensblog-avatar.jpg
+  avatar: /images/website/wensblog-avatar.jpg
 # IMAGE CONFIGURATION <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< end
 
 
@@ -120,8 +120,8 @@ home_banner:
   style: fixed # static or fixed
   # Home banner image
   image: 
-    light: /images/wensblog-light.png # light mode
-    dark: /images/wensblog-dark.png # dark mode
+    light: /images/website/wensblog-light.png # light mode
+    dark: /images/website/wensblog-dark.png # dark mode
   # Home banner title
   title: welcome to wensblog
   # Home banner subtitle
@@ -260,12 +260,12 @@ home:
     announcement: discover # Announcement text
     show_on_mobile: true # Whether to show sidebar navigation on mobile sheet menu
     links:
-      Archives: 
-        path: /archives 
-        icon: fa-regular fa-archive # can be empty
-      Tags: 
-        path: /tags 
-        icon: fa-regular fa-tags # can be empty
+      # Archives: 
+      #   path: /archives 
+      #   icon: fa-regular fa-archive # can be empty
+      # Tags: 
+      #   path: /tags 
+      #   icon: fa-regular fa-tags # can be empty
       Categories: 
         path: /categories 
         icon: fa-regular fa-folder # can be empty

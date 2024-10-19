@@ -1,21 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2024/10/17/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a class="link"   href="https://hexo.io/" >Hexo <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>! This is your very first post. Check <a class="link"   href="https://hexo.io/docs/" >documentation <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> for more info. If you get any problems when using Hexo, you can find the answer in <a class="link"   href="https://hexo.io/docs/troubleshooting.html" >troubleshooting <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> or you can ask me on <a class="link"   href="https://github.com/hexojs/hexo/issues" >GitHub <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure></div>
+    <title>关于搭建个人博客</title>
+    <url>/2024/10/17/create-blog/</url>
+    <content><![CDATA[
+  <div class="note p-4 mb-4 rounded-small info">
+    <p>提示:这不是一篇详细教程，仅提供搭建思路。</p>
 
-<p>More info: <a class="link"   href="https://hexo.io/docs/writing.html" >Writing <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure></div>
+  </div>
 
-<p>More info: <a class="link"   href="https://hexo.io/docs/server.html" >Server <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure></div>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近几天一直在捣鼓搭建个人博客。起初的搭建的理由是针对于linux无法科学上网导致很多东西无法查阅资料，遇到问题需要频繁从网上获取解决方案。<br>于是乎便想着搭建个人博客，在记录一些解决方案的同时，将有用的、重要的信息记录下来。</p>
+<h2 id="搭建过程"><a href="#搭建过程" class="headerlink" title="搭建过程"></a>搭建过程</h2><h3 id="idea"><a href="#idea" class="headerlink" title="idea"></a>idea</h3><p>首先，搭建个人博客，需要思考一个问题：<br><strong>我们需要什么？或者说：我们需要准备什么？</strong></p>
+<p>简单来想，需要：</p>
+<blockquote>
+<p>一个网站：充当博客网站<br>一个仓库：存放网站的文章等资源<br>一个编辑器：写博客、文章</p>
+</blockquote>
+<p>现在想复杂一点，需要：</p>
+<blockquote>
+<p>一个标识：指向博客网站<br>一种通讯方式：编辑器与仓库，仓库与网站</p>
+</blockquote>
+<p>现在我们需要专业一点了，需要：</p>
+<blockquote>
+<p>静态网站：博客网站<br>域名：<a class="link"   href="http://www.xxx.xxx指向静态网站/" >www.xxx.xxx指向静态网站 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br>vercel：部署静态网站<br>github：代码仓库<br>vscode：编辑器<br>hexo：博客框架，快速搭建同时美化</p>
+</blockquote>
 
-<p>More info: <a class="link"   href="https://hexo.io/docs/generating.html" >Generating <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure></div>
+  <div class="note p-4 mb-4 rounded-small red icon-padding">
+    <i class="note-icon fa-solid fa-question"></i><p>比对一下，发现了什么不同吗？</p>
 
-<p>More info: <a class="link"   href="https://hexo.io/docs/one-command-deployment.html" >Deployment <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+  </div>
+
+<p>我们缺少了通讯方式，但其实并没有，至少在仓库与网站方面，vercel帮我们实现了持续部署，这是根据github上对应的仓库变换来完成的。现在，我们只需要考虑<strong>编辑器</strong>与<strong>仓库</strong>之间如何交流了，这很有意思，因为如果经常使用github，那你对git一定不陌生。是的，git仿佛总是必须的。随着我们的博客越来越大，存放在自己电脑上仿佛总是不安全的。</p>
+<h3 id="realization-idea"><a href="#realization-idea" class="headerlink" title="realization idea"></a>realization idea</h3><blockquote>
+<p>注册github,创建名为username.github.io的仓库<br>vercel关联github账号注册，创建一个新hexo部署工程关联上述仓库<br>本地安装vscode和hexo，新建博客文件夹<br>依次初始化hexo和git仓库在博客文件夹<br>使用git推送本地至github<br>vercel管理自己的域名<br>使用域名访问博客网站</p>
+</blockquote>
+
+  <div class="note-large blue">
+    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
+      <p>细节提示</p>
+
+    </div>
+    <div class="notel-content">
+      <p>1、上述步骤可不按顺序进行<br>2、由于vercle域名污染原因，绑定自己的域名是必要的<br>3、可选用其他部署工具替代vercel，同理，github也可用其他仓库代替</p>
+
+    </div>
+  </div>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在我看来，搭建个人博客总不是必须的，除非你有足够的时间和精力来多了解很多必要的知识。或者你认为这能帮你解决很多问题，当然，开心最好。</p>
 ]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>vercel</tag>
+        <tag>github</tag>
+      </tags>
   </entry>
 </search>
