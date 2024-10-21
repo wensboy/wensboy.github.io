@@ -94,9 +94,20 @@ git commit -m 'commit-msg'
 # 推送代码到远程存储库
 git push local-branch remote-branch
 # 拉取代阿
-git pull
+git pull local-branch remote-branch
 # 添加远程仓库
 git remote add local-branch ssh-link
+# 查看本地分支
+git branch
+# 查看本地远程仓库
+git remote -v
+# 
+```
+
+**关于命令的详细使用:**
+
+```shell
+git <command> --help
 ```
 
 ## 总结
