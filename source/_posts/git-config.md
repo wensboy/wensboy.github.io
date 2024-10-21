@@ -100,8 +100,7 @@ git remote add local-branch ssh-link
 # 查看本地分支
 git branch
 # 查看本地远程仓库
-git remote -v
-# 
+git remote -v 
 ```
 
 **关于命令的详细使用:**
