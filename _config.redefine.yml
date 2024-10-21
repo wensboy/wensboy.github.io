@@ -23,7 +23,7 @@ info:
 # Docs: https://redefine-docs.ohevan.com/basic/defaults
 defaults:
   # Favicon
-  favicon: /images/website/wensblog-favicon.png
+  favicon: /images/website/wensblog-fav.svg
   # Site logo
   logo: /images/website/wensblog-logo.svg
   # Site avatar
