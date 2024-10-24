@@ -57,6 +57,52 @@
       </tags>
   </entry>
   <entry>
+    <title>想做的事和生活</title>
+    <url>/2024/10/24/dream-life/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>生活的最佳状态是冷冷清清的风风火火。–木心</p>
+<p>人生是一个很漫长的过程。(至少我是这么认为的) 想要在自己精力旺盛的时候实现一些自己感兴趣，或者说一直存在于心中的执念的想法看起来总是疯狂的。但是，不实现这些，人生又有什么意义？看过cheems的二创视频，是关于人生的，主题大致如下：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../images/dream-life/shutiao.png"
+                      alt="去码头整点薯条？"
+                ></p>
+<p>很不幸的是，一度被广泛二创的cheems最终也敌不过命运：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../images/dream-life/cheems-angle.jpg"
+                      alt="cheems天使"
+                ></p>
+<p>人生就是这样。所以，为了减少接下来我人生中的时间的浪费，同时记录一些人生中的难忘时刻，我打算在这里留下一篇随想。</p>
+<p>谨以此篇纪念我的同年，那是一段小有遗憾的幸福时光。</p>
+<h2 id="dream"><a href="#dream" class="headerlink" title="dream"></a>dream</h2><p>出身平凡，努力成为一个软件工程师，独立开发者。</p>
+<p>学习计划：</p>
+<ul>
+<li><input disabled="" type="checkbox"> lua</li>
+<li><input disabled="" type="checkbox"> shell</li>
+<li><input disabled="" type="checkbox"> python</li>
+<li><input disabled="" type="checkbox"> c++&#x2F;c</li>
+<li><input disabled="" type="checkbox"> linux</li>
+<li><input disabled="" type="checkbox"> docker</li>
+</ul>
+
+  <div class="note p-4 mb-4 rounded-small info green">
+    <p>持续更新中…</p>
+
+  </div>
+
+<h2 id="life"><a href="#life" class="headerlink" title="life"></a>life</h2>]]></content>
+      <categories>
+        <category>-life</category>
+      </categories>
+      <tags>
+        <tag>dream</tag>
+        <tag>life</tag>
+        <tag>plan</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>git配置与使用</title>
     <url>/2024/10/19/git-config/</url>
     <content><![CDATA[<h2 id="下载并安装git"><a href="#下载并安装git" class="headerlink" title="下载并安装git"></a>下载并安装git</h2><p>前往<a class="link"   href="https://git-scm.com/" >Git官网 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>点击下载进入下载页面，根据自己的操作系统下载安装即可。</p>

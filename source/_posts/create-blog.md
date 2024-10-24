@@ -6,7 +6,6 @@ tags:
     - github
 categories:
     - blog
-sticky: 999
 thumbnail: /images/create-blog/thumbnail.jpg
 excerpt: "hexo+vercel+github简单搭建个人博客"
 ---
