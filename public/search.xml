@@ -57,6 +57,24 @@
       </tags>
   </entry>
   <entry>
+    <title>About Dotfiles</title>
+    <url>/2024/10/29/dotfiles/</url>
+    <content><![CDATA[
+  <div class="note p-4 mb-4 rounded-small yellow">
+    <p>等待完成…</p>
+
+  </div>
+
+<h2 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h2><h2 id="Guide"><a href="#Guide" class="headerlink" title="Guide"></a>Guide</h2><h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2>]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>dotfile</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>想做的事和生活</title>
     <url>/2024/10/24/dream-life/</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>生活的最佳状态是冷冷清清的风风火火。–木心</p>
@@ -75,12 +93,12 @@
                       alt="cheems天使"
                 ></p>
 <p>人生就是这样。所以，为了减少接下来我人生中的时间的浪费，同时记录一些人生中的难忘时刻，我打算在这里留下一篇随想。</p>
-<p>谨以此篇纪念我的同年，那是一段小有遗憾的幸福时光。</p>
+<p>谨以此篇纪念我的童年，那是一段小有遗憾的幸福时光。</p>
 <h2 id="dream"><a href="#dream" class="headerlink" title="dream"></a>dream</h2><p>出身平凡，努力成为一个软件工程师，独立开发者。</p>
 <p>学习计划：</p>
 <ul>
-<li><input disabled="" type="checkbox"> lua</li>
-<li><input disabled="" type="checkbox"> shell</li>
+<li><input checked="" disabled="" type="checkbox"> lua</li>
+<li><input checked="" disabled="" type="checkbox"> shell</li>
 <li><input disabled="" type="checkbox"> python</li>
 <li><input disabled="" type="checkbox"> c++&#x2F;c</li>
 <li><input disabled="" type="checkbox"> linux</li>
@@ -94,7 +112,7 @@
 
 <h2 id="life"><a href="#life" class="headerlink" title="life"></a>life</h2>]]></content>
       <categories>
-        <category>-life</category>
+        <category>life</category>
       </categories>
       <tags>
         <tag>dream</tag>
@@ -162,6 +180,42 @@
         <tag>github</tag>
         <tag>git</tag>
         <tag>config</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux篇-启动项配置</title>
+    <url>/2024/10/29/linux-boot-config/</url>
+    <content><![CDATA[
+  <div class="note p-4 mb-4 rounded-small yellow">
+    <p>等待完成…</p>
+
+  </div>
+
+<h2 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h2><h2 id="Guide"><a href="#Guide" class="headerlink" title="Guide"></a>Guide</h2><h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2>]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>boot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux篇-网络配置</title>
+    <url>/2024/10/29/linux-network-config/</url>
+    <content><![CDATA[
+  <div class="note p-4 mb-4 rounded-small yellow">
+    <p>等待完成…</p>
+
+  </div>
+
+<h2 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h2><h2 id="Guide"><a href="#Guide" class="headerlink" title="Guide"></a>Guide</h2><h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2>]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>network</tag>
       </tags>
   </entry>
 </search>

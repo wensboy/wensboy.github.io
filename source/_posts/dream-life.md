@@ -5,7 +5,7 @@ tag:
     - life
     - plan
 categories:
-    -life
+    - life
 sticky: 999
 thumbnail: /images/dream-life/thumbnail.png
 excerpt: 关于我的一些故事与人生计划
@@ -25,7 +25,7 @@ excerpt: 关于我的一些故事与人生计划
 
 人生就是这样。所以，为了减少接下来我人生中的时间的浪费，同时记录一些人生中的难忘时刻，我打算在这里留下一篇随想。
 
-谨以此篇纪念我的同年，那是一段小有遗憾的幸福时光。
+谨以此篇纪念我的童年，那是一段小有遗憾的幸福时光。
 
 ## dream
 
@@ -33,8 +33,8 @@ excerpt: 关于我的一些故事与人生计划
 
 学习计划：
 
-- [ ] lua
-- [ ] shell
+- [x] lua
+- [x] shell
 - [ ] python
 - [ ] c++/c
 - [ ] linux
