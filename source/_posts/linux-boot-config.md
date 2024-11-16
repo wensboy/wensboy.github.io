@@ -51,10 +51,8 @@ Installation Procedure：
 >
 >2、Select a bootloader logo,like`GRUB`.This will map to the esp/EFI/GRUB directory and be used to distinguish between different efi files
 >
->3、Execute the following commands to install the GRUB EFI application grubx64.efi into esp/EFI/GRUB/ and install its modules into /boot/grub/x86_64-efi
->```shell
+>3、Execute the following commands to install the GRUB EFI application grubx64.efi into esp/EFI/GRUB/ and install its modules into /boot/grub/x86_64-efi,just like:
 >grub-install --targrt=x86_64-efi --efi-directory=esp --bootloader-id=GRUB
->```
 
 ```shell
 #I'm using grub on arch, 

@@ -13,20 +13,27 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://wensboy.site/categories/linux/"/>
+    <link rel="canonical" href="http://wensboy.site/2024/11/16/arch-install/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="personal blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="wensblog">
-<meta property="og:url" content="http://wensboy.site/categories/linux/index.html">
+        <meta name="description" content="详细的arch安装教程(非图形化)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Arch linux 详细安装">
+<meta property="og:url" content="http://wensboy.site/2024/11/16/arch-install/index.html">
 <meta property="og:site_name" content="wensblog">
-<meta property="og:description" content="personal blog">
+<meta property="og:description" content="详细的arch安装教程(非图形化)">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://wensboy.site/images/linux/arch-install/UEFI-partition.png">
+<meta property="og:image" content="http://wensboy.site/images/linux/arch-install/BIOS-partiton.png">
+<meta property="article:published_time" content="2024-11-16T00:49:01.962Z">
+<meta property="article:modified_time" content="2024-11-16T06:45:40.309Z">
 <meta property="article:author" content="xie wenjun">
+<meta property="article:tag" content="arch">
+<meta property="article:tag" content="linux">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://wensboy.site/images/linux/arch-install/UEFI-partition.png">
     
     
     <!--- Icon Part-->
@@ -38,7 +45,7 @@
     
     <title>
         
-            Category: linux -
+            Arch linux 详细安装 -
         
         wensblog
     </title>
@@ -627,71 +634,369 @@
             <div class="main-content">
 
                 
-                    <div class="category-container">
-    <div class="category-name">
-        <i class="fa-solid fa-folder"></i>&nbsp;linux
-    </div>
-    <div class="category-post-list">
-        
-<div class="archive-list-container">
-    
-        <section class="archive-item mb-spacing-unit last:mb-0">
-            <div class="archive-item-header flex flex-row items-center mb-2">
-                <span class="archive-year font-semibold text-3xl mr-2">2024</span>
-                <span class="archive-year-post-count text-xs md:text-sm font-bold rounded-small bg-third-background-color py-[2px] px-[10px] border border-border-color">4</span>
-            </div>
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
             
-            <ul class="article-list pl-0 md:pl-8 text-lg leading-[1.5]">
                 
-                    
-                    
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='11-16'>
-                    
-                    <a href="/2024/11/16/arch-install/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">Arch linux 详细安装</span>
-                    </a>
-                    
                 
-                    
+                <img src="/images/linux/arch-install/thumbnail.png" alt="Arch linux 详细安装" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75"/>
+                
+                <div class="w-full flex items-center absolute bottom-0 justify-start">
+                    <h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-semibold backdrop-blur-lg rounded-xl border border-border-color ">Arch linux 详细安装</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/website/wensblog-avatar.jpg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">wensboy</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv1</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2024-11-16 08:49:01</span>
+        <span class="mobile">2024-11-16 08:49:01</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-11-16 14:45:40</span>
+            <span class="mobile">2024-11-16 14:45:40</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
                     
                         
-                            </li>
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='10-29'>
+                        <li>
+                            <a href="/categories/linux/">linux</a>&nbsp;
+                        </li>
                     
-                    <a href="/2024/10/29/dotfiles/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">About Dotfiles</span>
-                    </a>
                     
                 
                     
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/linux/distro/">distro</a>&nbsp;
+                        </li>
                     
-                    <a href="/2024/10/29/linux-boot-config/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">Linux篇-启动项配置</span>
-                    </a>
-                    
-                
-                    
-                    
-                    <a href="/2024/10/29/linux-network-config/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">Linux篇-网络配置</span>
-                    </a>
                     
                 
-                </li> <!-- Ensure the last item is properly closed -->
             </ul>
-        </section>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/arch/">arch</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/linux/">linux</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>1.1k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>6 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
     
 </div>
 
-    </div>
-</div>
-<div class="category-paginator">
-    <div class="paginator">
-    <span class="page-number current">1</span>
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <h2 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h2><p>The purpose of this article is to provide a comprehensive installation guide to archlinux in a format that is more accessible to you. note that this requires you to already have some knowledge of operating systems. This article summarizes the steps on the arch wiki, and is not intended to be used by everyone.</p>
+<p><strong>hardware requirement</strong></p>
+<blockquote>
+<p>CPU architecture: x86_64<br>minimun of RAM: 512GiB<br>minimun of disk space: 2GiB<br>network interface: available</p>
+</blockquote>
+<h2 id="Guide"><a href="#Guide" class="headerlink" title="Guide"></a>Guide</h2><h3 id="Acquire-an-installation-image"><a href="#Acquire-an-installation-image" class="headerlink" title="Acquire an installation image"></a>Acquire an installation image</h3><p>Visit the arch website, look for the desired system version, download the corresponding iso system file, and use gnupg to verify the signature of the downloaded file.</p>
+<h3 id="Verify-signature"><a href="#Verify-signature" class="headerlink" title="Verify signature"></a>Verify signature</h3><p>It is recommended to verify the signature of the iso file before using it,especially when downloading from an HTTP mirror.</p>
+<p>After downloading the iso file, in order to verify the signature, you need to first download the corresponding iso signature.</p>
+<p><strong>Use gnupg to run the following command:</strong></p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gpg --keyserver-options auto-key-retrieve --verify archlinux-version-x86_64.iso.sig</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>Alternatively, from an existing Arch Linux installation run:</strong></p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacman-key -v archlinux-version-x86_64.iso.sig</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="Prepare-an-installation-medium"><a href="#Prepare-an-installation-medium" class="headerlink" title="Prepare an installation medium"></a>Prepare an installation medium</h3><p>Prepare a large enough storage (size larger than the system iso file can be) of mobile devices, such as: USB flash drive, portable hard disk, etc.. With the help of tools such as ventoy, make the mobile device into a system boot disk.</p>
+<h3 id="Boot-the-live-environment"><a href="#Boot-the-live-environment" class="headerlink" title="Boot the live environment"></a>Boot the live environment</h3><p><strong>Note: Arch Linux installation images do not support Secure Boot.But secure boot can be set up after completing the installation.</strong> </p>
+<p>1、Insert the USB flash drive with the arch system iso file to the physical device, power on the physical device.</p>
+<p>2、When the installation medium’s boot loader menu appears:</p>
+<p><strong>if you used the ISO, select <em>Arch Linux install medium</em> and press Enter to enter the installation environment.</strong><br><strong>if you used the Netboot image, choose a geographically close mirror from Mirror menu, then select <em>Boot Arch Linux</em> and press Enter.</strong></p>
+<h3 id="Set-the-console-keyboard-layout-and-font"><a href="#Set-the-console-keyboard-layout-and-font" class="headerlink" title="Set the console keyboard layout and font"></a>Set the console keyboard layout and font</h3><p><strong>The default keyboard layout is US.</strong></p>
+<p>list all available layout and set the keyboard layout:</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">localectl list-keymaps</span><br><span class="line">loadkeys &lt;keyboard-layout&gt;</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>console fonts are located in &#x2F;usr&#x2F;share&#x2F;kbd&#x2F;consolefonts&#x2F;</strong></p>
+<p>set console fonts:</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setfont &lt;font-name&gt;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="Verify-the-boot-mode"><a href="#Verify-the-boot-mode" class="headerlink" title="Verify the boot mode"></a>Verify the boot mode</h3><p>just run:</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cat /sys/firmware/efi/fw_platform_size</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">64 --&gt;UEFI mode and has a 64-bit x64 UEFI</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">32 --&gt;UEFI mode and has a 32-bit IA32 UEFI</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">file not exist --&gt;BIOS</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="Connect-to-the-internet"><a href="#Connect-to-the-internet" class="headerlink" title="Connect to the internet"></a>Connect to the internet</h3><p><strong>Note:Ensure your Network interface is available.</strong></p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip link</span><br></pre></td></tr></table></figure></div>
+
+<p>connect the network:</p>
+<ul>
+<li>Ethernet–plug in the cable</li>
+<li>Wi-Fi–with tools like <strong>iwctl</strong> or <strong>networkmanager</strong></li>
+<li>Mobile broadband modem–connect to the mobile network with the <strong>mmcli</strong> utility</li>
+</ul>
+<p>using iwctl to connect network,for example:</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pacman -S iwd</span><br><span class="line">systemctl enable iwd.service</span><br><span class="line">systemctl start iwd.service</span><br></pre></td></tr></table></figure></div>
+
+<p>usage:</p>
+<p><strong>Note: network name should be double quoted when connecting</strong></p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">iwctl</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">Enter the iwctl environment</span></span><br><span class="line"><span class="meta prompt_">[iwd]# </span><span class="language-bash">...</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">list all available commands</span></span><br><span class="line">:help</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">list all Wi-Fi devices</span></span><br><span class="line">device list</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">turn on corresponding adapter</span></span><br><span class="line">device &lt;name&gt; set-property Powered on</span><br><span class="line">adapter &lt;adapter&gt; set-property Powered on</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">scan availabel neowork nearly</span></span><br><span class="line">station &lt;name&gt; scan</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">list all available neowork</span></span><br><span class="line">station &lt;name&gt; get-networks</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">connect the network</span></span><br><span class="line">station &lt;name&gt; connect SSID</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">connect with passphrase</span></span><br><span class="line">iwctl --passphrase passphrase station name connect SSID</span><br></pre></td></tr></table></figure></div>
+
+<p>test network connection：</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping archlinux.org</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="Update-the-system-clock"><a href="#Update-the-system-clock" class="headerlink" title="Update the system clock"></a>Update the system clock</h3><p>In the live environment <strong>systemd-timesyncd</strong> is enabled by default and time will be synced automatically once a connection to the internet is established. </p>
+<p>ensure the system clock is synchronized:</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">timedatectl</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="Partition-the-disks"><a href="#Partition-the-disks" class="headerlink" title="Partition the disks"></a>Partition the disks</h3><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">list available disk devices</span></span><br><span class="line">fdisk -l</span><br><span class="line">lsblk -f</span><br></pre></td></tr></table></figure></div>
+
+<p>For the selected partitioned disk device, the following partitions are required：<br>1、root directory –&gt;&#x2F;<br>2、EFI system partition –&gt;&#x2F;boot</p>
+<p>using fdisk to modify partition tables:</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fdisk /dev/the_disk_to_be_partitioned</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>Note:Take time to plan a long-term partitioning scheme to avoid risky and complicated conversion or re-partitioning procedures in the future.</strong></p>
+<p>example layout:</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../images/linux/arch-install/UEFI-partition.png"
+                      alt="UEFI-partition"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../images/linux/arch-install/BIOS-partiton.png"
+                      alt="BIOS-partition"
+                ></p>
+<p>#Format the partitions</p>
+<p><strong>Each partition needs to be properly formatted as a file system.</strong></p>
+<p>some format example:</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">common partition</span></span><br><span class="line">mkfs.ext4 /dev/root_partition</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">swap partition</span></span><br><span class="line">mkswap /dev/swap_partition</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">efi partition</span></span><br><span class="line">mkfs.fat -F 32 /dev/efi_system_partition</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="Mount-the-file-systems"><a href="#Mount-the-file-systems" class="headerlink" title="Mount the file systems"></a>Mount the file systems</h3><p><strong>Note:All formatted filesystems should be mounted on &#x2F;mnt.You must mount the root partition before mounting any other partitions.</strong></p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">root --&gt; /mnt</span></span><br><span class="line">mount /dev/root_partition /mnt</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">boot --&gt; /mnt/boot</span></span><br><span class="line">mout --mkdir /dev/efi_system_partition /mnt/boot</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">swap</span></span><br><span class="line">swapon /dev/swap_partition</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="Installation-of-Arch"><a href="#Installation-of-Arch" class="headerlink" title="Installation of Arch"></a>Installation of Arch</h3><p><strong>select the mirrors</strong></p>
+<p><strong>Note:Mirroring prioritizes the mirrors at the top of the file list, scanning the list of mirrors from top to bottom.Choose an appropriate mirror (modification of the corresponding file is necessary).</strong></p>
+<p>The list of mirrors is located in <code>/etc/pacman.d/mirrorlist</code></p>
+<p><strong>install essential packages</strong></p>
+<p><strong>Note:All software and configuration files installed in the live environment will not appear in the new system after installation.</strong></p>
+<p>Installation of basic packages and firmware programs and kernels：</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacstrap -K /mnt base linux linux-firmware [vim] [amd/intel ucode] []</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>Note:If there are any remaining packages that you want to install during the installation of the system, you can add them directly to pacstrap.</strong></p>
+<p>——<em>At this point, the arch basic installation phase is complete.</em>——</p>
+<h3 id="Configure-the-system"><a href="#Configure-the-system" class="headerlink" title="Configure the system"></a>Configure the system</h3><h4 id="fstab"><a href="#fstab" class="headerlink" title="fstab"></a>fstab</h4><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>Note:If an error occurs, change the corresponding file manually.</strong></p>
+<h4 id="chroot"><a href="#chroot" class="headerlink" title="chroot"></a>chroot</h4><p>Exit the live environment and enter the new system:</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arch-chroot /mnt</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="time"><a href="#time" class="headerlink" title="time"></a>time</h4><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ln -sf /usr/share/zoneinfo/Region/&lt;City&gt; /etc/localtime</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">generate /etc/adjtime</span></span><br><span class="line">hwclock --systohc</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="localization"><a href="#localization" class="headerlink" title="localization"></a>localization</h4><p>Edit <code>/etc/locale.gen</code> and uncomment en_US.UTF-8 UTF-8 and other needed UTF-8 locales.</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">locale-gen</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="built_in">set</span> lang</span></span><br><span class="line">vim /etc/locale.conf</span><br><span class="line">LANG=en_US.UTF-8</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="built_in">set</span> keymaps</span></span><br><span class="line">vim /etc/vconsole.conf</span><br><span class="line">KEYMAP=&lt;layout&gt;</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="network-configuration"><a href="#network-configuration" class="headerlink" title="network configuration"></a>network configuration</h4><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/hostname</span><br><span class="line">&lt;hostname&gt;</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>Note:Within my other article, this section is covered in detail, just look for the jump to view it!</strong></p>
+<h4 id="Initramfs"><a href="#Initramfs" class="headerlink" title="Initramfs"></a>Initramfs</h4><p><strong>Note:Since it’s not required, just check the official website for details.</strong></p>
+<h4 id="root-password"><a href="#root-password" class="headerlink" title="root password"></a>root password</h4><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">passwd</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="Bootloader"><a href="#Bootloader" class="headerlink" title="Bootloader"></a>Bootloader</h4><p><strong>Note:Within my other article, this section is covered in detail, just look for the jump to view it!</strong></p>
+<h4 id="reboot"><a href="#reboot" class="headerlink" title="reboot"></a>reboot</h4><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reboot</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p><strong>There are many more details and precautions in the installation of arch. And, installation is not the most difficult arch, relatively, maintenance arch is always much more difficult than installing arch, it is because arch maintenance is difficult, often due to some irresistible factors, we need to re-install the arch system. Seek more later use and maintenance is decisive.</strong></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a class="link"   target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Installation_guide" >Arch installation guide <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.wensboy.site/2024/11/15/linux-boot-config/" >Arch boot loader <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.wensboy.site/2024/10/29/linux-network-config/" >Arch network <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> Arch linux 详细安装</li>
+        <li><strong>Author:</strong> wensboy</li>
+        <li><strong>Created at
+                :</strong> 2024-11-16 08:49:01</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2024-11-16 14:45:40
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://www.wensboy.site/2024/11/16/arch-install/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
 </div>
 
+            </div>
+        
+
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/arch/">#arch</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/linux/">#linux</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2024/10/29/dotfiles/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">About Dotfiles</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://example.example.com',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          reaction: false,
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+          recaptchaV3Key: "wasd",
+          
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">Arch linux 详细安装</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Preface"><span class="nav-text">Preface</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Guide"><span class="nav-text">Guide</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Acquire-an-installation-image"><span class="nav-text">Acquire an installation image</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Verify-signature"><span class="nav-text">Verify signature</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Prepare-an-installation-medium"><span class="nav-text">Prepare an installation medium</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Boot-the-live-environment"><span class="nav-text">Boot the live environment</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Set-the-console-keyboard-layout-and-font"><span class="nav-text">Set the console keyboard layout and font</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Verify-the-boot-mode"><span class="nav-text">Verify the boot mode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Connect-to-the-internet"><span class="nav-text">Connect to the internet</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Update-the-system-clock"><span class="nav-text">Update the system clock</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Partition-the-disks"><span class="nav-text">Partition the disks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mount-the-file-systems"><span class="nav-text">Mount the file systems</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Installation-of-Arch"><span class="nav-text">Installation of Arch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Configure-the-system"><span class="nav-text">Configure the system</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Summary"><span class="nav-text">Summary</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
+
+    </div>
+</div>
+        </div>
+    
 </div>
 
 
@@ -780,6 +1085,27 @@
         </div>
     </div>
 
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
     
 
     <div class="right-side-tools-container">
