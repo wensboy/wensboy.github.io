@@ -35,9 +35,9 @@ excerpt: 关于我的一些故事与人生计划
 
 - [x] lua
 - [x] shell
-- [ ] python
-- [ ] c++/c
-- [ ] linux
+- [x] python
+- [x] c++/c
+- [x] linux
 - [ ] docker
 
 {% note info green%}

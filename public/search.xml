@@ -129,6 +129,68 @@
       </tags>
   </entry>
   <entry>
+    <title>C++篇-STL</title>
+    <url>/2024/11/25/cplusplus-STL/</url>
+    <content><![CDATA[<h2 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h2><p>When it comes to data structures and algorithms,<strong>C++’s standard template</strong> library can greatly help you speed up your efficiency. However, the standard template library is a very large library, which contains many encapsulated <strong>data structure</strong> templates and <strong>algorithm implementations</strong>, so it is actually a bit difficult to memorize completely, and it is almost difficult to implement, which may be an NP problem. Yes, it seems as if our memories are always limited. Therefore, a good memory is not as good as the memory of a pen, and recording this learning process is also a process of continuous memory.</p>
+<h2 id="Guide"><a href="#Guide" class="headerlink" title="Guide"></a>Guide</h2><h3 id="About-STL"><a href="#About-STL" class="headerlink" title="About STL"></a>About STL</h3><p><strong>Something about C++ stl</strong></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../images/cplusplus/feature.png"
+                      alt="feature of STL"
+                ></p>
+<p><strong>STL encompasses the following core concepts</strong></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../images/cplusplus/about_stl.png"
+                      alt="contain of STL"
+                ></p>
+<blockquote>
+<p>Imitation functions<br>Algorithm<br>Iterator<br>Space Configurator<br>Containers<br>Adapters</p>
+</blockquote>
+<p>Learning priorities are given here:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Containers</li>
+<li><input disabled="" type="checkbox"> Algorithm</li>
+<li><input disabled="" type="checkbox"> Iterator</li>
+<li><input disabled="" type="checkbox"> Adapters</li>
+<li><input disabled="" type="checkbox"> Space Configurator</li>
+<li><input disabled="" type="checkbox"> Imitation functions</li>
+</ul>
+
+  <div class="note p-4 mb-4 rounded-small info yellow">
+    <p>note that this does not necessarily apply to all developers who are learning advanced features of C++. It’s a good habit to study selectively according to your needs.</p>
+
+  </div>
+
+<h3 id="Containers"><a href="#Containers" class="headerlink" title="Containers"></a>Containers</h3><p><strong>collection of data structures</strong></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../images/cplusplus/containers.jpg"
+                      alt="containers"
+                ></p>
+<p>Before starting learning containers, you need to add some pre-knowledge such as the use of std::pair, and at the same time, it will also add some extended knowledge in the continuous recording process.</p>
+
+  <div class="note p-4 mb-4 rounded-small info green">
+    <p>std::pair</p>
+
+  </div>
+
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">T1</span>,<span class="keyword">class</span> <span class="title class_">T2</span>&gt; <span class="keyword">struct</span> <span class="title class_">pair</span>&#123;&#125;</span><br><span class="line">first_type --&gt; T1</span><br><span class="line">second_type --&gt; T2</span><br><span class="line"></span><br><span class="line">eg:</span><br><span class="line">pair&lt;<span class="type">int</span>,<span class="type">int</span>&gt; first_pair = &#123;<span class="number">1</span>,<span class="number">2</span>&#125;;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">first_pair.first --&gt; 1</span></span><br><span class="line"><span class="comment">first_pair.second --&gt; 2</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*functions*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//std::make_pair()</span></span><br><span class="line"><span class="keyword">auto</span> p = std::<span class="built_in">make_pair</span>(T1,T2);</span><br><span class="line"></span><br><span class="line"><span class="comment">//std::swap()</span></span><br><span class="line"><span class="keyword">auto</span> p1 = std::<span class="built_in">make_pair</span>(<span class="number">10</span>,<span class="number">10</span>);</span><br><span class="line"><span class="keyword">auto</span> p2 = std::<span class="built_in">pair</span>(<span class="number">20</span>,<span class="number">9.9</span>);</span><br><span class="line"></span><br><span class="line">p<span class="number">1.</span><span class="built_in">swap</span>(p2);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">p1--&gt;&#123;20,9.9&#125;</span></span><br><span class="line"><span class="comment">p2--&gt;&#123;10,10&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">std::<span class="built_in">swap</span>(p1,p2);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">p1--&gt;&#123;10,10&#125;</span></span><br><span class="line"><span class="comment">p2--&gt;&#123;20,9.9&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//std::get(std:pair)</span></span><br><span class="line"><span class="keyword">auto</span> p =std::<span class="built_in">make_pair</span>(<span class="number">9</span>,<span class="number">3.14</span>);</span><br><span class="line">std::<span class="built_in">get</span>&lt;<span class="number">0</span>&gt;(p);</span><br><span class="line">std::<span class="built_in">get</span>&lt;<span class="number">1</span>&gt;(p);</span><br><span class="line">std::<span class="built_in">get</span>&lt;<span class="type">int</span>&gt;(p);</span><br><span class="line">std::<span class="built_in">get</span>&lt;<span class="type">double</span>&gt;(p);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">0 --&gt; first</span></span><br><span class="line"><span class="comment">1 --&gt; second</span></span><br><span class="line"><span class="comment">int --&gt; int_type</span></span><br><span class="line"><span class="comment">double --&gt; double_type</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//logic operators</span></span><br><span class="line">from <span class="number">0</span> --&gt; <span class="number">1</span> to compare:</span><br><span class="line"><span class="keyword">auto</span> p1,p2;</span><br><span class="line"><span class="keyword">if</span> p1&gt;p2 :</span><br><span class="line">    print std::<span class="built_in">get</span>&lt;<span class="number">0</span>&gt;(p1)&gt;std::<span class="built_in">get</span>&lt;<span class="number">0</span>&gt;(p2) <span class="keyword">and</span> std::<span class="built_in">get</span>&lt;<span class="number">1</span>&gt;(p1)&gt;std::<span class="built_in">get</span>&lt;<span class="number">1</span>&gt;(p2); </span><br></pre></td></tr></table></figure></div>
+
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2>]]></content>
+      <categories>
+        <category>数据结构与算法</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+        <tag>数据结构与算法</tag>
+        <tag>语言特性</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>关于搭建个人博客</title>
     <url>/2024/10/17/create-blog/</url>
     <content><![CDATA[
@@ -227,9 +289,9 @@
 <ul>
 <li><input checked="" disabled="" type="checkbox"> lua</li>
 <li><input checked="" disabled="" type="checkbox"> shell</li>
-<li><input disabled="" type="checkbox"> python</li>
-<li><input disabled="" type="checkbox"> c++&#x2F;c</li>
-<li><input disabled="" type="checkbox"> linux</li>
+<li><input checked="" disabled="" type="checkbox"> python</li>
+<li><input checked="" disabled="" type="checkbox"> c++&#x2F;c</li>
+<li><input checked="" disabled="" type="checkbox"> linux</li>
 <li><input disabled="" type="checkbox"> docker</li>
 </ul>
 
