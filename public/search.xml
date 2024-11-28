@@ -180,6 +180,14 @@
 
 <div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">T1</span>,<span class="keyword">class</span> <span class="title class_">T2</span>&gt; <span class="keyword">struct</span> <span class="title class_">pair</span>&#123;&#125;</span><br><span class="line">first_type --&gt; T1</span><br><span class="line">second_type --&gt; T2</span><br><span class="line"></span><br><span class="line">eg:</span><br><span class="line">pair&lt;<span class="type">int</span>,<span class="type">int</span>&gt; first_pair = &#123;<span class="number">1</span>,<span class="number">2</span>&#125;;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">first_pair.first --&gt; 1</span></span><br><span class="line"><span class="comment">first_pair.second --&gt; 2</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*functions*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//std::make_pair()</span></span><br><span class="line"><span class="keyword">auto</span> p = std::<span class="built_in">make_pair</span>(T1,T2);</span><br><span class="line"></span><br><span class="line"><span class="comment">//std::swap()</span></span><br><span class="line"><span class="keyword">auto</span> p1 = std::<span class="built_in">make_pair</span>(<span class="number">10</span>,<span class="number">10</span>);</span><br><span class="line"><span class="keyword">auto</span> p2 = std::<span class="built_in">pair</span>(<span class="number">20</span>,<span class="number">9.9</span>);</span><br><span class="line"></span><br><span class="line">p<span class="number">1.</span><span class="built_in">swap</span>(p2);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">p1--&gt;&#123;20,9.9&#125;</span></span><br><span class="line"><span class="comment">p2--&gt;&#123;10,10&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">std::<span class="built_in">swap</span>(p1,p2);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">p1--&gt;&#123;10,10&#125;</span></span><br><span class="line"><span class="comment">p2--&gt;&#123;20,9.9&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//std::get(std:pair)</span></span><br><span class="line"><span class="keyword">auto</span> p =std::<span class="built_in">make_pair</span>(<span class="number">9</span>,<span class="number">3.14</span>);</span><br><span class="line">std::<span class="built_in">get</span>&lt;<span class="number">0</span>&gt;(p);</span><br><span class="line">std::<span class="built_in">get</span>&lt;<span class="number">1</span>&gt;(p);</span><br><span class="line">std::<span class="built_in">get</span>&lt;<span class="type">int</span>&gt;(p);</span><br><span class="line">std::<span class="built_in">get</span>&lt;<span class="type">double</span>&gt;(p);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">0 --&gt; first</span></span><br><span class="line"><span class="comment">1 --&gt; second</span></span><br><span class="line"><span class="comment">int --&gt; int_type</span></span><br><span class="line"><span class="comment">double --&gt; double_type</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//logic operators</span></span><br><span class="line">from <span class="number">0</span> --&gt; <span class="number">1</span> to compare:</span><br><span class="line"><span class="keyword">auto</span> p1,p2;</span><br><span class="line"><span class="keyword">if</span> p1&gt;p2 :</span><br><span class="line">    print std::<span class="built_in">get</span>&lt;<span class="number">0</span>&gt;(p1)&gt;std::<span class="built_in">get</span>&lt;<span class="number">0</span>&gt;(p2) <span class="keyword">and</span> std::<span class="built_in">get</span>&lt;<span class="number">1</span>&gt;(p1)&gt;std::<span class="built_in">get</span>&lt;<span class="number">1</span>&gt;(p2); </span><br></pre></td></tr></table></figure></div>
 
+
+  <div class="note p-4 mb-4 rounded-small info green">
+    <p>std::map</p>
+
+  </div>
+
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//create a map with two pairs</span></span><br><span class="line">std::map&lt;<span class="keyword">class</span> Key ,<span class="keyword">class</span> T&gt; m&#123;&#123;<span class="string">&quot;cpu&quot;</span>,<span class="number">1</span>&#125;,&#123;<span class="string">&quot;gpu&quot;</span>,<span class="number">2</span>&#125;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//access the m</span></span><br><span class="line"><span class="keyword">for</span>(<span class="type">const</span> <span class="keyword">auto</span>&amp; [key,value] : m)</span><br><span class="line">&#123;</span><br><span class="line">    std::cout&lt;&lt;<span class="string">&quot;[ &quot;</span> &lt;&lt; key &lt;&lt; <span class="string">&quot;:&quot;</span> &lt;&lt; value &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">[ &quot;cpu&quot; : 1]</span></span><br><span class="line"><span class="comment">[ &quot;gpu&quot; : 2]</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//update old pair and add new pair</span></span><br><span class="line">m[<span class="string">&quot;cpu&quot;</span>] = <span class="number">3</span>;</span><br><span class="line">m[<span class="string">&quot;ram&quot;</span>] = <span class="number">4</span>;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">cpu:3</span></span><br><span class="line"><span class="comment">ram:4</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//erase a pair</span></span><br><span class="line">m.<span class="built_in">erase</span>(<span class="string">&quot;key&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//get the size of the map</span></span><br><span class="line">m.<span class="built_in">size</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">//clear up the map</span></span><br><span class="line">m.<span class="built_in">clear</span>()</span><br></pre></td></tr></table></figure></div>
+
 <h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2>]]></content>
       <categories>
         <category>数据结构与算法</category>
@@ -311,6 +319,57 @@
       </tags>
   </entry>
   <entry>
+    <title>Linux篇-启动项配置</title>
+    <url>/2024/10/29/linux-boot-config/</url>
+    <content><![CDATA[<h2 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h2><p>After installing linux, we need to boot it. With any luck, you will get a brand new operating system that you can get right into and use. But it seems that we are not always the luckiest ones. Maybe what awaits us is a device with a black screen, and that doesn’t seem to be what we want. So we need to avoid this, and under linux, a boot loader is always a must.</p>
+<h2 id="Guide"><a href="#Guide" class="headerlink" title="Guide"></a>Guide</h2><h3 id="Check-Firmware-Types"><a href="#Check-Firmware-Types" class="headerlink" title="Check Firmware Types"></a>Check Firmware Types</h3><p>Firmware may sound confusing, and it’s not. In short, the following two firmware systems are commonly used in modern computers:</p>
+<blockquote>
+<p>BIOS:Basic Input-Output System(has been replaced progressively since 2010 by the UEFI)</p>
+<p>UEFI:Unified Extensible Firmware Interface</p>
+</blockquote>
+<h3 id="System-Initialization"><a href="#System-Initialization" class="headerlink" title="System Initialization"></a>System Initialization</h3><p>The system turns on, performs a power-up self-test, and initializes the necessary hardware devices. After this, the base firmware scans the corresponding disk partition and finds the corresponding add-in, then starts the bootloader, after which the bootloader loads the kernel and the system using specific parameters.</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../images/linux/boot-config/bootprocess.png"
+                      alt="boot-process"
+                ></p>
+<h3 id="Boot-Loader"><a href="#Boot-Loader" class="headerlink" title="Boot Loader"></a>Boot Loader</h3><p>The boot loader is the first software loaded by the computer firmware and is responsible for loading the kernel using specific kernel parameters and initializing the RAM disks according to the configuration file.</p>
+<p><strong>some boot loader(from arch wiki)</strong></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../images/linux/boot-config/bootloader.png"
+                      alt="bootloaders"
+                ></p>
+<p>Here we can find a number of bootloaders to choose from, and the applicable characteristics of common bootloaders are also provided here, here we are going to use <strong>grub</strong> as it has the most powerful characteristics and is also one of the most popular bootloader programs.</p>
+<h3 id="Grub"><a href="#Grub" class="headerlink" title="Grub"></a>Grub</h3><h4 id="Download-and-Install"><a href="#Download-and-Install" class="headerlink" title="Download and Install"></a>Download and Install</h4><p>tips:That’s always necessary: if you’re using an installation media-booted system installation, such as a USB flash drive or other removable media, run <code>grub-install</code> after the system has been successfully installed.If you need to install grub outside of a successful installation for some other reason, you’ll need to run the option <code>--boot-directory=/boot</code> to mount grub to the specified partition.</p>
+<p>Installation Procedure：</p>
+<blockquote>
+<p>1、Mount the EFI partition</p>
+<p>2、Select a bootloader logo,like<code>GRUB</code>.This will map to the esp&#x2F;EFI&#x2F;GRUB directory and be used to distinguish between different efi files</p>
+<p>3、Execute the following commands to install the GRUB EFI application grubx64.efi into esp&#x2F;EFI&#x2F;GRUB&#x2F; and install its modules into &#x2F;boot&#x2F;grub&#x2F;x86_64-efi,just like:<br>grub-install –targrt&#x3D;x86_64-efi –efi-directory&#x3D;esp –bootloader-id&#x3D;GRUB</p>
+</blockquote>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">I<span class="string">&#x27;m using grub on arch,</span></span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string">if you&#x27;</span>re using other distributions,</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">looking <span class="keyword">for</span> specific downloads is necessary!</span></span><br><span class="line">sudo pacman -S grub efibootmgr</span><br><span class="line">grub-install --target=i386-pc /dev/sdX(Installed disks, not partitions)</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="Config"><a href="#Config" class="headerlink" title="Config"></a>Config</h4><p>The grub configuration file is located in <code>/etc/default/grub</code>, and you need to regenerate the new main configuration file after each modification.</p>
+<p><strong>Generate master configuration file</strong><br>Main Configuration File Directory:<code>/boot/grub/grub.cfg</code></p>
+<p>Using the tool <code>grub-mkconfig</code> to generate the master configuration file:</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">grub-mkconfig -o /boot/grub/grub.cfg</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p><strong>The boot loader is a very important tool in operating system bootstrapping. It has a direct impact on whether or not the operating system kernel can be boot loaded properly. Of course, for those who have higher needs, using a boot loader to load kernel-specific parameters is also and its important. It is necessary to take a little time to learn more about the advanced features related to grub, as well as some other boot loaders.</strong></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a class="link"   href="https://wiki.archlinux.org/title/Arch_boot_process#Boot_loader" >Arch Boot Process <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   href="https://wiki.archlinux.org/title/GRUB" >Grub from arch <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>boot</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>git配置与使用</title>
     <url>/2024/10/19/git-config/</url>
     <content><![CDATA[<h2 id="下载并安装git"><a href="#下载并安装git" class="headerlink" title="下载并安装git"></a>下载并安装git</h2><p>前往<a class="link"   href="https://git-scm.com/" >Git官网 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>点击下载进入下载页面，根据自己的操作系统下载安装即可。</p>
@@ -370,57 +429,6 @@
         <tag>github</tag>
         <tag>git</tag>
         <tag>config</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux篇-启动项配置</title>
-    <url>/2024/10/29/linux-boot-config/</url>
-    <content><![CDATA[<h2 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h2><p>After installing linux, we need to boot it. With any luck, you will get a brand new operating system that you can get right into and use. But it seems that we are not always the luckiest ones. Maybe what awaits us is a device with a black screen, and that doesn’t seem to be what we want. So we need to avoid this, and under linux, a boot loader is always a must.</p>
-<h2 id="Guide"><a href="#Guide" class="headerlink" title="Guide"></a>Guide</h2><h3 id="Check-Firmware-Types"><a href="#Check-Firmware-Types" class="headerlink" title="Check Firmware Types"></a>Check Firmware Types</h3><p>Firmware may sound confusing, and it’s not. In short, the following two firmware systems are commonly used in modern computers:</p>
-<blockquote>
-<p>BIOS:Basic Input-Output System(has been replaced progressively since 2010 by the UEFI)</p>
-<p>UEFI:Unified Extensible Firmware Interface</p>
-</blockquote>
-<h3 id="System-Initialization"><a href="#System-Initialization" class="headerlink" title="System Initialization"></a>System Initialization</h3><p>The system turns on, performs a power-up self-test, and initializes the necessary hardware devices. After this, the base firmware scans the corresponding disk partition and finds the corresponding add-in, then starts the bootloader, after which the bootloader loads the kernel and the system using specific parameters.</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../images/linux/boot-config/bootprocess.png"
-                      alt="boot-process"
-                ></p>
-<h3 id="Boot-Loader"><a href="#Boot-Loader" class="headerlink" title="Boot Loader"></a>Boot Loader</h3><p>The boot loader is the first software loaded by the computer firmware and is responsible for loading the kernel using specific kernel parameters and initializing the RAM disks according to the configuration file.</p>
-<p><strong>some boot loader(from arch wiki)</strong></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../images/linux/boot-config/bootloader.png"
-                      alt="bootloaders"
-                ></p>
-<p>Here we can find a number of bootloaders to choose from, and the applicable characteristics of common bootloaders are also provided here, here we are going to use <strong>grub</strong> as it has the most powerful characteristics and is also one of the most popular bootloader programs.</p>
-<h3 id="Grub"><a href="#Grub" class="headerlink" title="Grub"></a>Grub</h3><h4 id="Download-and-Install"><a href="#Download-and-Install" class="headerlink" title="Download and Install"></a>Download and Install</h4><p>tips:That’s always necessary: if you’re using an installation media-booted system installation, such as a USB flash drive or other removable media, run <code>grub-install</code> after the system has been successfully installed.If you need to install grub outside of a successful installation for some other reason, you’ll need to run the option <code>--boot-directory=/boot</code> to mount grub to the specified partition.</p>
-<p>Installation Procedure：</p>
-<blockquote>
-<p>1、Mount the EFI partition</p>
-<p>2、Select a bootloader logo,like<code>GRUB</code>.This will map to the esp&#x2F;EFI&#x2F;GRUB directory and be used to distinguish between different efi files</p>
-<p>3、Execute the following commands to install the GRUB EFI application grubx64.efi into esp&#x2F;EFI&#x2F;GRUB&#x2F; and install its modules into &#x2F;boot&#x2F;grub&#x2F;x86_64-efi,just like:<br>grub-install –targrt&#x3D;x86_64-efi –efi-directory&#x3D;esp –bootloader-id&#x3D;GRUB</p>
-</blockquote>
-<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">I<span class="string">&#x27;m using grub on arch,</span></span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string">if you&#x27;</span>re using other distributions,</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">looking <span class="keyword">for</span> specific downloads is necessary!</span></span><br><span class="line">sudo pacman -S grub efibootmgr</span><br><span class="line">grub-install --target=i386-pc /dev/sdX(Installed disks, not partitions)</span><br></pre></td></tr></table></figure></div>
-
-<h4 id="Config"><a href="#Config" class="headerlink" title="Config"></a>Config</h4><p>The grub configuration file is located in <code>/etc/default/grub</code>, and you need to regenerate the new main configuration file after each modification.</p>
-<p><strong>Generate master configuration file</strong><br>Main Configuration File Directory:<code>/boot/grub/grub.cfg</code></p>
-<p>Using the tool <code>grub-mkconfig</code> to generate the master configuration file:</p>
-<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">grub-mkconfig -o /boot/grub/grub.cfg</span><br></pre></td></tr></table></figure></div>
-
-<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p><strong>The boot loader is a very important tool in operating system bootstrapping. It has a direct impact on whether or not the operating system kernel can be boot loaded properly. Of course, for those who have higher needs, using a boot loader to load kernel-specific parameters is also and its important. It is necessary to take a little time to learn more about the advanced features related to grub, as well as some other boot loaders.</strong></p>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a class="link"   href="https://wiki.archlinux.org/title/Arch_boot_process#Boot_loader" >Arch Boot Process <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p><a class="link"   href="https://wiki.archlinux.org/title/GRUB" >Grub from arch <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-        <tag>boot</tag>
       </tags>
   </entry>
   <entry>

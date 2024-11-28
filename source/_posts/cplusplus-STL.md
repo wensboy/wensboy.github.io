@@ -111,6 +111,45 @@ if p1>p2 :
     print std::get<0>(p1)>std::get<0>(p2) and std::get<1>(p1)>std::get<1>(p2); 
 ```
 
+{% note info green %}
+std::map
+{% endnote %}
+
+```C++
+//create a map with two pairs
+std::map<class Key ,class T> m{{"cpu",1},{"gpu",2}};
+
+//access the m
+for(const auto& [key,value] : m)
+{
+    std::cout<<"[ " << key << ":" << value << std::endl;
+}
+/*
+[ "cpu" : 1]
+[ "gpu" : 2]
+*/
+
+//update old pair and add new pair
+m["cpu"] = 3;
+m["ram"] = 4;
+/*
+cpu:3
+ram:4
+*/
+
+//erase a pair
+m.erase("key")
+
+//get the size of the map
+m.size()
+
+//clear up the map
+m.clear()
+
+//if not empty
+m.empty()
+```
+
 ## Summary
 
 
