@@ -23,7 +23,7 @@ mainSections = ["posts"]
 	subtitle = "**Immersed in the digital world, nothing here.**"
 	mathjax = false
 	katex = false
-	customcss = ["css/index.css"]
+	customcss = ["css/index.css", "css/shortcodes.css"]
 
 [[params.social]]
 name = "GitHub"
