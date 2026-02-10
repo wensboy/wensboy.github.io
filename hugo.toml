@@ -1,0 +1,72 @@
+### basic ###
+theme = 'archie'
+baseURL = 'https://wensboy.github.io/'
+title = 'Pixel Memory'
+languageCode = 'en-us'
+copyright = "© wensboy"
+
+pygmentsstyle = "monokai"
+pygmentscodefences = true
+pygmentscodefencesguesssyntax = true
+
+### page ###
+[pagination]
+  pagerSize = 6
+
+### sections ###
+mainSections = ["posts"]
+  
+### params ###
+[params]
+	mode="toggle"
+	useCDN=false 
+	subtitle = "**Immersed in the digital world, nothing here.**"
+	mathjax = true
+	katex = true
+	customcss = ["css/index.css"]
+
+[[params.social]]
+name = "GitHub"
+icon = "github"
+url = "https://github.com/wensboy"
+
+[[params.social]]
+name = "Twitter"
+icon = "twitter"
+url = "https://twitter.com/"
+
+[[params.social]]
+name = "Mail"
+icon = "mail"
+url = "https:///mail.google.com"
+
+[[params.social]]
+name = "RSS"
+icon = "rss"
+url = "https://wensboy.github.io/index.rss"
+  
+### menu ###
+[[menu.main]]
+name = "Home"
+url = "/"
+weight = 1
+
+[[menu.main]]
+name = "Posts"
+url = "/posts"
+weight = 2
+
+[[menu.main]]
+name = "About"
+url = "/about"
+weight = 3
+
+[[menu.main]]
+name = "Tags"
+url = "/tags"
+weight = 4
+
+### caches ###
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'

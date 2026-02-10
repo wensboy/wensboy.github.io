@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>404 - Page Not Found</title>
+    <style>
+        :root {
+            --bg: #282828;         
+            --fg: #ebdbb2;         
+            --green: #b8bb26;      
+            --green-dim: #98971a;  
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--fg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        p {
+            font-size: 1.25rem;
+            line-height: 1.6;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px; 
+            margin-top: 2rem;
+            border: 2px solid #3c3836;
+        }
+        
+        a {
+            border-bottom: 2px solid var(--green);
+            color: var(--green);
+            text-decoration: none;
+            padding: 0 4px;
+            transition: all 0.2s ease;
+        }
+
+        a:hover,
+        a:focus {
+            background-color: var(--green);
+            color: var(--bg); 
+            outline: none;
+        }
+
+        img::selection {
+            background: var(--green);
+        }
+    </style>
+</head>
+<body>
+    <main class="content">
+        <p>The place was a complete mess. <br>
+           <a href="/">Tell the author</a> that aliens have appeared here.</p>
+        <img src="/404.jpg" alt="👽: 4️⃣0️⃣4️⃣❗">
+    </main>
+</body>
+</html>
