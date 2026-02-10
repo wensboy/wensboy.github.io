@@ -21,8 +21,8 @@ mainSections = ["posts"]
 	mode="toggle"
 	useCDN=false 
 	subtitle = "**Immersed in the digital world, nothing here.**"
-	mathjax = true
-	katex = true
+	mathjax = false
+	katex = false
 	customcss = ["css/index.css"]
 
 [[params.social]]
