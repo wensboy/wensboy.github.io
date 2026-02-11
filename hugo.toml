@@ -28,7 +28,7 @@ mainSections = ["posts"]
 [[params.social]]
 name = "GitHub"
 icon = "github"
-url = "https://github.com/wensboy"
+url = "https://github.com/wendisx"
 
 [[params.social]]
 name = "Twitter"

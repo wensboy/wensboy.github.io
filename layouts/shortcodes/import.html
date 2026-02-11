@@ -1,0 +1,10 @@
+{{ $file := .Get 0 }}
+{{ with .Page.Resources.GetMatch $file }}
+    {{ .Content }}
+{{ else }}
+    {{ with .Site.GetPage $file }}
+        {{ .Content }}
+    {{ else }}
+        <p style="color:red;">👽: !!<-{{ $file }} ?</p>
+    {{ end }}
+{{ end }}
