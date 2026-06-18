@@ -13,7 +13,7 @@ cover:
   caption: ""
   relative: true
 editPost:
-  URL: "https://github.com/wensboy/Digmem/"
+  URL: "https://github.com/wensboy/wensboy.github.io/blob/main/content"
   Text: "Correct"
   appendFilePath: true
 ---
