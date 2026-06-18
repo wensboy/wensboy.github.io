@@ -1,0 +1,29 @@
+# basic
+baseURL: http://wensblog.cc.cd/
+locale: en-us
+title: Digmem
+titleCaseStyle: none
+timeZone: Asia/Shanghai
+theme: ["PaperMod"]
+copyright: "© 2026 Individual. All Rights Reserved."
+# default.language
+defaultContentLanguage: en
+defaultContentLanguageInSubdir: false
+disableDefaultLanguageRedirect: false
+# language
+languages:
+  en:
+    contentDir: content/
+    direction: ltr
+    disabled: false
+    label: English
+    locale: en-US
+    title: Digmem
+    weight: 1
+# build
+buildDrafts: false
+buildExpired: false
+buildFutrue: false
+timeout: 60
+# enable feature
+enableRobotsTXT: true

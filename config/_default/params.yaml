@@ -1,0 +1,35 @@
+params:
+  defaultTheme: auto
+  disableThemeToggle: false
+  ShowShareButtons: false
+  ShowReadingTime: true
+  ShowBreadCrumbs: true
+  ShowPostNavLinks: true
+  ShowCodeCopyButtons: true
+  comments: true
+  # page mode
+  homeInfoParams:
+    Title: "**DIGITAL MEMORY** - wensblog"
+    Content: A deep digital user, immersed in the digital world, has nothing. Go [here](https://localhost:8080/chat) to communicate with me.
+  socialIcons:
+    - name: "github"
+      url: "https://github.com/wensboy"
+    - name: "qq"
+      url: "https://qq.com"
+    - name: "rss"
+      url: ""
+  # search
+  fuseOpts:
+    isCaseSensitive: true
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    # limit: 10
+    keys: ["title", "permalink", "summary", "content"]
+  # cover
+  cover:
+    responsiveImages: false
+    linkFullImages: false
+  

@@ -1,0 +1,96 @@
+{{- $open := false -}}
+{{- with .Get "open" -}}
+  {{- $open = in (slice true "true" "TRUE" "True" 1 "1") . -}}
+{{- end -}}
+{{- $class := .Get "class" | default "" -}}
+{{- $hint := .Get "hint" | default "" -}}
+
+{{- if not $hint -}}
+  {{- warnf "missing value for param 'hint': %s" .Position -}}
+{{- end -}}
+
+{{- if not (.Page.Scratch.Get "closeable-shortcode-style") -}}
+  {{- .Page.Scratch.Set "closeable-shortcode-style" true -}}
+<style>
+  .closeable {
+    margin: 1rem 0 var(--content-gap);
+    overflow: hidden;
+    color: var(--content);
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    transition: border-color 160ms ease, box-shadow 160ms ease;
+  }
+
+  .closeable:hover,
+  .closeable:focus-within {
+    border-color: var(--tertiary);
+  }
+
+  .closeable summary {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    min-height: 2.5rem;
+    padding: 0.45rem 0.9rem;
+    list-style: none;
+    outline: none;
+  }
+
+  .closeable summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .closeable summary::before {
+    content: "";
+    flex: 0 0 auto;
+    width: 0.48rem;
+    height: 0.48rem;
+    border-block-start: 2px solid currentColor;
+    border-inline-end: 2px solid currentColor;
+    color: var(--secondary);
+    transform: rotate(45deg);
+    transition: transform 160ms ease, color 160ms ease;
+  }
+
+  .closeable[open] summary::before {
+    transform: rotate(135deg);
+  }
+
+  .closeable summary:focus-visible {
+    box-shadow: inset 0 0 0 2px var(--secondary);
+  }
+
+  .closeable__hint {
+    min-width: 0;
+    color: var(--primary);
+    font-weight: 500;
+  }
+
+  .closeable__body {
+    margin: 0 0.9rem;
+    padding: 0.2rem 0 0.85rem 1.65rem;
+    color: var(--content);
+  }
+
+  .closeable__body > :last-child {
+    margin-bottom: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .closeable,
+    .closeable summary::before {
+      transition: none;
+    }
+  }
+</style>
+{{- end -}}
+
+<details class="closeable{{ with $class }} {{ . }}{{ end }}"{{ if $open }} open{{ end }}>
+  <summary>
+    <span class="closeable__hint">{{ $hint | markdownify }}</span>
+  </summary>
+  <div class="closeable__body">
+    {{- .Inner | markdownify -}}
+  </div>
+</details>

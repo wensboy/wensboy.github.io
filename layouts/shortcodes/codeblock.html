@@ -1,0 +1,413 @@
+{{- $syntax := true -}}
+{{- with .Get "syntax" -}}
+  {{- $syntax = in (slice true "true" "TRUE" "True" 1 "1") . -}}
+{{- end -}}
+{{- $position := lower (.Get "tab-position" | default "top") -}}
+{{- if not (in (slice "top" "bottom" "left" "right") $position) -}}
+  {{- warnf "invalid value for param 'tab-position': %q at %s" $position .Position -}}
+  {{- $position = "top" -}}
+{{- end -}}
+{{- $overflow := lower (.Get "overflow" | default "scroll") -}}
+{{- if not (in (slice "scroll" "switch") $overflow) -}}
+  {{- warnf "invalid value for param 'overflow': %q at %s" $overflow .Position -}}
+  {{- $overflow = "scroll" -}}
+{{- end -}}
+{{- $blocks := findRESubmatch `(?ms)^---([A-Za-z0-9_+.#/-]+)[ \t]*\r?\n(.*?)\r?\n---[ \t]*(?:\r?\n|$)` .Inner -}}
+{{- $isVertical := in (slice "left" "right") $position -}}
+{{- $id := printf "codeblock-%d" .Ordinal -}}
+
+{{- if not $blocks -}}
+  {{- warnf "missing fenced language blocks for codeblock shortcode: %s" .Position -}}
+{{- end -}}
+
+{{- if not (.Page.Scratch.Get "codeblock-shortcode-style") -}}
+  {{- .Page.Scratch.Set "codeblock-shortcode-style" true -}}
+<style>
+  .codeblock {
+    margin: 1rem 0 var(--content-gap);
+    overflow: hidden;
+    color: var(--content);
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    transition: border-color 160ms ease, background-color 160ms ease, box-shadow 160ms ease;
+  }
+
+  [data-theme="dark"] .codeblock {
+    background: var(--entry);
+  }
+
+  .codeblock:hover,
+  .codeblock:focus-within {
+    border-color: var(--tertiary);
+  }
+
+  .codeblock--left,
+  .codeblock--right {
+    display: grid;
+    grid-template-columns: minmax(7rem, max-content) minmax(0, 1fr);
+  }
+
+  .codeblock--right {
+    grid-template-columns: minmax(0, 1fr) minmax(7rem, max-content);
+  }
+
+  .codeblock__tabs {
+    display: flex;
+    min-width: 0;
+    background: var(--code-bg);
+  }
+
+  [data-theme="dark"] .codeblock__tabs {
+    background: var(--entry);
+  }
+
+  .codeblock--top .codeblock__tabs,
+  .codeblock--bottom .codeblock__tabs {
+    align-items: stretch;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  .codeblock--top .codeblock__tabs {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .codeblock--bottom .codeblock__tabs {
+    border-top: 1px solid var(--border);
+  }
+
+  .codeblock--left .codeblock__tabs,
+  .codeblock--right .codeblock__tabs {
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 12rem;
+    max-height: min(28rem, 70vh);
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .codeblock--left .codeblock__tabs {
+    border-inline-end: 1px solid var(--border);
+  }
+
+  .codeblock--right .codeblock__tabs {
+    grid-column: 2;
+    border-inline-start: 1px solid var(--border);
+  }
+
+  .codeblock--right .codeblock__panes {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .codeblock__tab {
+    flex: 0 0 auto;
+    padding: 0.45rem 0.85rem;
+    color: var(--secondary);
+    font-size: 0.85rem;
+    font-weight: 600;
+    line-height: 1.4;
+    white-space: nowrap;
+    border-radius: 0;
+  }
+
+  .codeblock__tab:hover,
+  .codeblock__tab:focus-visible,
+  .codeblock__tab.is-active {
+    color: var(--primary);
+    background: var(--theme);
+  }
+
+  [data-theme="dark"] .codeblock__tab:hover,
+  [data-theme="dark"] .codeblock__tab:focus-visible,
+  [data-theme="dark"] .codeblock__tab.is-active {
+    background: var(--code-bg);
+  }
+
+  .codeblock__tab:focus-visible,
+  .codeblock__select:focus-visible {
+    outline: 2px solid var(--secondary);
+    outline-offset: -2px;
+  }
+
+  .codeblock--top .codeblock__tab.is-active {
+    box-shadow: inset 0 -2px 0 var(--primary);
+  }
+
+  .codeblock--bottom .codeblock__tab.is-active {
+    box-shadow: inset 0 2px 0 var(--primary);
+  }
+
+  .codeblock--left .codeblock__tab.is-active {
+    box-shadow: inset -2px 0 0 var(--primary);
+  }
+
+  .codeblock--right .codeblock__tab.is-active {
+    box-shadow: inset 2px 0 0 var(--primary);
+  }
+
+  .codeblock__select {
+    flex: 0 0 auto;
+    min-width: 7.5rem;
+    max-width: 12rem;
+    padding: 0.45rem 0.65rem;
+    color: var(--primary);
+    background: var(--theme);
+    border-radius: 0;
+    outline: none;
+  }
+
+  .codeblock__select[hidden] {
+    display: none;
+  }
+
+  [data-theme="dark"] .codeblock__select {
+    background: var(--code-bg);
+  }
+
+  .codeblock__panes {
+    min-width: 0;
+    background: var(--code-block-bg);
+  }
+
+  .codeblock__pane {
+    min-width: 0;
+  }
+
+  .codeblock__pane[hidden] {
+    display: none;
+  }
+
+  .codeblock .highlight:not(table),
+  .codeblock .highlight pre,
+  .codeblock pre {
+    margin: 0;
+    border-radius: 0;
+  }
+
+  .codeblock .highlight:not(table) {
+    margin-bottom: 0;
+  }
+
+  .codeblock pre code {
+    display: grid;
+    margin: auto 0;
+    padding: 0.85rem 1rem;
+    overflow-x: auto;
+    color: #d5d5d6;
+    background: var(--code-block-bg) !important;
+    border-radius: 0;
+    word-break: normal;
+  }
+
+  @media screen and (max-width: 640px) {
+    .codeblock--left,
+    .codeblock--right {
+      display: block;
+    }
+
+    .codeblock--left .codeblock__tabs,
+    .codeblock--right .codeblock__tabs {
+      flex-direction: row;
+      max-width: none;
+      max-height: none;
+      overflow-x: auto;
+      overflow-y: hidden;
+      border-inline: 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .codeblock--left .codeblock__tab.is-active,
+    .codeblock--right .codeblock__tab.is-active {
+      box-shadow: inset 0 -2px 0 var(--primary);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .codeblock {
+      transition: none;
+    }
+  }
+</style>
+<script>
+  (() => {
+    if (window.__digmemCodeblockReady) return;
+    window.__digmemCodeblockReady = true;
+
+    const setActive = (block, index) => {
+      const tabs = [...block.querySelectorAll("[data-codeblock-tab]")];
+      const panes = [...block.querySelectorAll("[data-codeblock-pane]")];
+      const select = block.querySelector("[data-codeblock-select]");
+
+      tabs.forEach((tab) => {
+        const active = Number(tab.dataset.index) === index;
+        tab.classList.toggle("is-active", active);
+        tab.setAttribute("aria-selected", active ? "true" : "false");
+      });
+
+      panes.forEach((pane) => {
+        pane.hidden = Number(pane.dataset.index) !== index;
+      });
+
+      block.dataset.activeIndex = String(index);
+      if (select && [...select.options].some((option) => Number(option.value) === index)) {
+        select.value = String(index);
+      } else if (select) {
+        select.value = "";
+      }
+    };
+
+    const resetSwitch = (tabs, select) => {
+      tabs.forEach((tab) => {
+        tab.hidden = false;
+      });
+      select.hidden = true;
+      select.innerHTML = "";
+    };
+
+    const layoutSwitch = (block) => {
+      if (block.dataset.overflow !== "switch") return;
+
+      const tablist = block.querySelector("[data-codeblock-tabs]");
+      const select = block.querySelector("[data-codeblock-select]");
+      const tabs = [...block.querySelectorAll("[data-codeblock-tab]")];
+      if (!tablist || !select || tabs.length < 2) return;
+
+      resetSwitch(tabs, select);
+
+      const vertical = tablist.getAttribute("aria-orientation") === "vertical" && window.matchMedia("(min-width: 641px)").matches;
+      const hasOverflow = vertical
+        ? tablist.scrollHeight > tablist.clientHeight + 1
+        : tablist.scrollWidth > tablist.clientWidth + 1;
+
+      if (!hasOverflow) return;
+
+      select.hidden = false;
+      select.innerHTML = '<option value="">More...</option>';
+
+      const limit = vertical ? tablist.clientHeight : tablist.clientWidth;
+      const selectSize = vertical ? select.offsetHeight : select.offsetWidth;
+      let used = 0;
+      const hiddenTabs = [];
+
+      tabs.forEach((tab) => {
+        const size = vertical ? tab.offsetHeight : tab.offsetWidth;
+        if (hiddenTabs.length || used + size + selectSize > limit) {
+          tab.hidden = true;
+          hiddenTabs.push(tab);
+        } else {
+          used += size;
+        }
+      });
+
+      if (!hiddenTabs.length && tabs.length) {
+        const last = tabs[tabs.length - 1];
+        last.hidden = true;
+        hiddenTabs.push(last);
+      }
+
+      const activeIndex = Number(block.dataset.activeIndex || "0");
+      hiddenTabs.forEach((tab) => {
+        const option = document.createElement("option");
+        option.value = tab.dataset.index;
+        option.textContent = tab.textContent.trim();
+        select.appendChild(option);
+      });
+
+      if (hiddenTabs.some((tab) => Number(tab.dataset.index) === activeIndex)) {
+        select.value = String(activeIndex);
+      }
+    };
+
+    const layoutAll = () => {
+      document.querySelectorAll("[data-codeblock]").forEach(layoutSwitch);
+    };
+
+    const init = () => {
+      document.querySelectorAll("[data-codeblock]").forEach((block) => {
+        if (block.dataset.ready) return;
+        block.dataset.ready = "true";
+        block.dataset.activeIndex = block.dataset.activeIndex || "0";
+
+        block.querySelectorAll("[data-codeblock-tab]").forEach((tab) => {
+          tab.addEventListener("click", () => {
+            setActive(block, Number(tab.dataset.index));
+            layoutSwitch(block);
+          });
+        });
+
+        const select = block.querySelector("[data-codeblock-select]");
+        select?.addEventListener("change", () => {
+          if (select.value !== "") {
+            setActive(block, Number(select.value));
+            layoutSwitch(block);
+          }
+        });
+
+        setActive(block, Number(block.dataset.activeIndex || "0"));
+      });
+
+      layoutAll();
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", init, { once: true });
+    } else {
+      init();
+    }
+
+    window.addEventListener("resize", () => {
+      window.requestAnimationFrame(layoutAll);
+    });
+
+    document.fonts?.ready.then(layoutAll);
+  })();
+</script>
+{{- end -}}
+
+<div id="{{ $id }}" class="codeblock codeblock--{{ $position }} codeblock--{{ $overflow }}" data-codeblock data-overflow="{{ $overflow }}" data-position="{{ $position }}">
+  {{- if or (eq $position "top") (eq $position "left") (eq $position "right") -}}
+  <div class="codeblock__tabs" role="tablist" aria-orientation="{{ if $isVertical }}vertical{{ else }}horizontal{{ end }}" data-codeblock-tabs>
+    {{- range $index, $block := $blocks -}}
+      {{- $lang := trim (index $block 1) " \t\r\n" -}}
+      {{- $label := $lang | default (printf "code %d" (add $index 1)) -}}
+      {{- $tabID := printf "%s-tab-%d" $id $index -}}
+      {{- $paneID := printf "%s-pane-%d" $id $index -}}
+      <button type="button" id="{{ $tabID }}" class="codeblock__tab{{ if eq $index 0 }} is-active{{ end }}" role="tab" aria-selected="{{ if eq $index 0 }}true{{ else }}false{{ end }}" aria-controls="{{ $paneID }}" data-codeblock-tab data-index="{{ $index }}">{{ $label }}</button>
+    {{- end -}}
+    {{- if eq $overflow "switch" -}}
+      <select class="codeblock__select" aria-label="More code tabs" data-codeblock-select hidden></select>
+    {{- end -}}
+  </div>
+  {{- end -}}
+  <div class="codeblock__panes">
+    {{- range $index, $block := $blocks -}}
+      {{- $lang := trim (index $block 1) " \t\r\n" -}}
+      {{- $code := trim (index $block 2) "\r\n" -}}
+      {{- $tabID := printf "%s-tab-%d" $id $index -}}
+      {{- $paneID := printf "%s-pane-%d" $id $index -}}
+      <div id="{{ $paneID }}" class="codeblock__pane" role="tabpanel" aria-labelledby="{{ $tabID }}" data-codeblock-pane data-index="{{ $index }}"{{ if ne $index 0 }} hidden{{ end }}>
+        {{- if $syntax -}}
+          {{- highlight $code $lang "" -}}
+        {{- else -}}
+          <pre><code class="language-{{ $lang | anchorize }}">{{ $code }}</code></pre>
+        {{- end -}}
+      </div>
+    {{- end -}}
+  </div>
+  {{- if eq $position "bottom" -}}
+  <div class="codeblock__tabs" role="tablist" aria-orientation="horizontal" data-codeblock-tabs>
+    {{- range $index, $block := $blocks -}}
+      {{- $lang := trim (index $block 1) " \t\r\n" -}}
+      {{- $label := $lang | default (printf "code %d" (add $index 1)) -}}
+      {{- $tabID := printf "%s-tab-%d" $id $index -}}
+      {{- $paneID := printf "%s-pane-%d" $id $index -}}
+      <button type="button" id="{{ $tabID }}" class="codeblock__tab{{ if eq $index 0 }} is-active{{ end }}" role="tab" aria-selected="{{ if eq $index 0 }}true{{ else }}false{{ end }}" aria-controls="{{ $paneID }}" data-codeblock-tab data-index="{{ $index }}">{{ $label }}</button>
+    {{- end -}}
+    {{- if eq $overflow "switch" -}}
+      <select class="codeblock__select" aria-label="More code tabs" data-codeblock-select hidden></select>
+    {{- end -}}
+  </div>
+  {{- end -}}
+</div>

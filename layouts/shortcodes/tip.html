@@ -1,0 +1,128 @@
+{{- $type := lower (.Get "type" | default "info") -}}
+{{- if not (in (slice "quote" "info" "safe" "warn" "danger") $type) -}}
+  {{- warnf "invalid value for param 'type': %q at %s" $type .Position -}}
+  {{- $type = "info" -}}
+{{- end -}}
+{{- $class := .Get "class" | default "" -}}
+{{- $topic := .Get "topic" | default (title $type) -}}
+
+{{- if not (.Page.Scratch.Get "tip-shortcode-style") -}}
+  {{- .Page.Scratch.Set "tip-shortcode-style" true -}}
+<style>
+  .tip {
+    --tip-accent: var(--secondary);
+    margin: 1rem 0 var(--content-gap);
+    overflow: hidden;
+    color: var(--content);
+    background: var(--code-bg);
+    border: 1px solid var(--tip-accent);
+    border-radius: var(--radius);
+    transition: border-color 160ms ease, background-color 160ms ease, box-shadow 160ms ease;
+  }
+
+  [data-theme="dark"] .tip {
+    background: var(--entry);
+  }
+
+  .tip--quote {
+    --tip-accent: #8a8f98;
+  }
+
+  .tip--info {
+    --tip-accent: #3b82f6;
+  }
+
+  .tip--safe {
+    --tip-accent: #22a06b;
+  }
+
+  .tip--warn {
+    --tip-accent: #d99a00;
+  }
+
+  .tip--danger {
+    --tip-accent: #e05252;
+  }
+
+  .tip:hover,
+  .tip:focus-within {
+    border-color: var(--tip-accent);
+  }
+
+  .tip__header {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    min-height: 2.5rem;
+    padding: 0.45rem 0.9rem;
+    color: var(--primary);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .tip__icon {
+    flex: 0 0 auto;
+    width: 1rem;
+    height: 1rem;
+    color: var(--tip-accent);
+  }
+
+  .tip__topic {
+    min-width: 0;
+    font-size: 0.9rem;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+
+  .tip__body {
+    padding: 0.85rem 1rem;
+    color: var(--content);
+  }
+
+  .tip__body > :last-child {
+    margin-bottom: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tip {
+      transition: none;
+    }
+  }
+</style>
+{{- end -}}
+
+<aside class="tip tip--{{ $type }}{{ with $class }} {{ . }}{{ end }}">
+  <div class="tip__header">
+    {{- if eq $type "quote" -}}
+      <svg class="tip__icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 21c3 0 7-1 7-8V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v6c0 1.1.9 2 2 2h3" />
+        <path d="M14 21c3 0 7-1 7-8V5c0-1.1-.9-2-2-2h-3c-1.1 0-2 .9-2 2v6c0 1.1.9 2 2 2h3" />
+      </svg>
+    {{- else if eq $type "safe" -}}
+      <svg class="tip__icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 6 9 17l-5-5" />
+      </svg>
+    {{- else if eq $type "warn" -}}
+      <svg class="tip__icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m21.7 18-8.6-15a1.3 1.3 0 0 0-2.2 0L2.3 18a1.2 1.2 0 0 0 1.1 1.8h17.2a1.2 1.2 0 0 0 1.1-1.8Z" />
+        <path d="M12 9v4" />
+        <path d="M12 17h.01" />
+      </svg>
+    {{- else if eq $type "danger" -}}
+      <svg class="tip__icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <path d="m15 9-6 6" />
+        <path d="m9 9 6 6" />
+      </svg>
+    {{- else -}}
+      <svg class="tip__icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <path d="M12 16v-4" />
+        <path d="M12 8h.01" />
+      </svg>
+    {{- end -}}
+    <span class="tip__topic">{{ $topic | markdownify }}</span>
+  </div>
+  <div class="tip__body">
+    {{- .Inner | markdownify -}}
+  </div>
+</aside>

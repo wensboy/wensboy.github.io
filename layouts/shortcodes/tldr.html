@@ -1,0 +1,62 @@
+{{- $class := .Get "class" | default "" -}}
+
+{{- if not (.Page.Scratch.Get "tldr-shortcode-style") -}}
+  {{- .Page.Scratch.Set "tldr-shortcode-style" true -}}
+<style>
+  .tldr {
+    margin: 1rem 0 var(--content-gap);
+    overflow: hidden;
+    color: var(--content);
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    transition: border-color 160ms ease, background-color 160ms ease, box-shadow 160ms ease;
+  }
+
+  [data-theme="dark"] .tldr {
+    background: var(--entry);
+  }
+
+  .tldr:hover,
+  .tldr:focus-within {
+    border-color: var(--tertiary);
+  }
+
+  .tldr__title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.5rem;
+    padding: 0.45rem 0.9rem;
+    color: var(--primary);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 1.4;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .tldr__body {
+    padding: 0.85rem 1rem;
+    color: var(--content);
+  }
+
+  .tldr__body > :last-child {
+    margin-bottom: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tldr {
+      transition: none;
+    }
+  }
+</style>
+{{- end -}}
+
+<aside class="tldr{{ with $class }} {{ . }}{{ end }}">
+  <div class="tldr__title">TL;DR</div>
+  <div class="tldr__body">
+    {{- .Inner | markdownify -}}
+  </div>
+</aside>
