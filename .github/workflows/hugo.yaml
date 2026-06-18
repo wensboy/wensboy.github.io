@@ -20,7 +20,7 @@ jobs:
     env:
       # DART_SASS_VERSION: 1.97.3
       GO_VERSION: 1.25.6
-      HUGO_VERSION: 0.155.3
+      HUGO_VERSION: 0.163.1
       NODE_VERSION: 24.13.0
       TZ: Asia/Shanghai
     steps:
@@ -59,7 +59,6 @@ jobs:
           echo "${HOME}/.local/hugo" >> "${GITHUB_PATH}"
       - name: Verify installations
         run: |
-          echo "Dart Sass: $(sass --version)"
           echo "Go: $(go version)"
           echo "Hugo: $(hugo version)"
           echo "Node.js: $(node --version)"
