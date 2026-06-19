@@ -4,6 +4,7 @@ searchHidden: false
 ShowToc: true
 TocOpen: false
 ShowBreadCrumbs: true
+comments: true
 date: '2026-06-18'
 author: ["wendisx"]
 title: 'More Extensions'
