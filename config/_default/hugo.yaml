@@ -27,3 +27,7 @@ buildFutrue: false
 timeout: 60
 # enable feature
 enableRobotsTXT: true
+# tags
+taxonomies:
+  tag: tags
+  category: categories

@@ -8,6 +8,7 @@ comments: true
 date: '2026-06-18'
 author: ["wendisx"]
 title: 'Rime For Linux'
+tags: ["input method", "linux"]
 cover:
   image: ""
   alt: ""

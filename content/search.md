@@ -6,7 +6,7 @@ menus:
     # html format
     pre: ""
     post: ""
-    weight: 3
+    weight: 4
 title: "Search"
 layout: "search"
 summary: "search"

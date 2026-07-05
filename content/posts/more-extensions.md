@@ -8,6 +8,7 @@ comments: true
 date: '2026-06-18'
 author: ["wendisx"]
 title: 'More Extensions'
+tags: ["hugo", "markdown extensions"]
 cover:
   image: ""
   alt: ""
