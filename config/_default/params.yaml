@@ -5,7 +5,8 @@ params:
   ShowReadingTime: true
   ShowBreadCrumbs: true
   ShowPostNavLinks: true
-  ShowCodeCopyButtons: true
+  # the copy button is provided by the code block status bar (layouts/_markup/render-codeblock.html)
+  ShowCodeCopyButtons: false
   comments: true
   # page mode
   homeInfoParams:

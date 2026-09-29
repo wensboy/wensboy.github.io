@@ -20,7 +20,26 @@ editPost:
   appendFilePath: true
 ---
 
+# layout::_markup
+
+## native codeblock
+
+issues:
+
+1. No language label.
+2. There is a display issue with the copy button.
+
+current:
+
+1. isolation of the top status bar code section.
+2. language label.
+3. **Copy** icon button.
+
 # layout::partials
+
+## comments
+
+This blog uses the [Giscus](https://giscus.app/) comment system.
 
 # layout::shortcodes
 

@@ -1,0 +1,65 @@
+{{- /* Footer custom content area start */ -}}
+{{- /*     Insert any custom code web-analytics, resources, etc. here */ -}}
+{{- /* Footer custom content area end */ -}}
+
+{{- /* Extension: copy button of markdown code blocks (see layouts/_markup/render-codeblock.html) */ -}}
+<script>
+    (() => {
+        const writeClipboard = (text) => {
+            if (navigator.clipboard && window.isSecureContext) {
+                return navigator.clipboard.writeText(text);
+            }
+
+            return new Promise((resolve, reject) => {
+                const area = document.createElement("textarea");
+                area.value = text;
+                area.setAttribute("readonly", "");
+                area.style.position = "fixed";
+                area.style.top = "-1000px";
+                area.style.opacity = "0";
+                document.body.appendChild(area);
+                area.select();
+                try {
+                    document.execCommand("copy") ? resolve() : reject(new Error("copy failed"));
+                } catch (err) {
+                    reject(err);
+                } finally {
+                    document.body.removeChild(area);
+                }
+            });
+        };
+
+        const initCodeCards = () => {
+            document.querySelectorAll("[data-code-card]").forEach((card) => {
+                const button = card.querySelector("[data-code-copy]");
+                const code = card.querySelector("pre code");
+                if (!button || !code || button.dataset.ready) return;
+                button.dataset.ready = "true";
+
+                const idleLabel = button.getAttribute("aria-label") || "Copy code";
+                const doneLabel = button.dataset.labelCopied || "Copied";
+                let timer;
+
+                button.addEventListener("click", () => {
+                    writeClipboard(code.textContent).then(() => {
+                        button.classList.add("is-copied");
+                        button.setAttribute("aria-label", doneLabel);
+                        button.setAttribute("title", doneLabel);
+                        clearTimeout(timer);
+                        timer = setTimeout(() => {
+                            button.classList.remove("is-copied");
+                            button.setAttribute("aria-label", idleLabel);
+                            button.setAttribute("title", idleLabel);
+                        }, 2000);
+                    }).catch(() => { });
+                });
+            });
+        };
+
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", initCodeCards, { once: true });
+        } else {
+            initCodeCards();
+        }
+    })();
+</script>
