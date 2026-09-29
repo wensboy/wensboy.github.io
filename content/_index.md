@@ -7,8 +7,7 @@ menus:
     pre: ""
     post: ""
     weight: 1
-title: ""
-layout: ""
+title: "Home"
 url: "/"
-summary: ""
+summary: "home"
 ---
