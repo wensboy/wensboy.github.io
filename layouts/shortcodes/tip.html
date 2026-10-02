@@ -74,8 +74,14 @@
   }
 
   .tip__body {
-    padding: 0.85rem 1rem;
+    /* inline padding matches the header's 0.9rem so that header and body share one column;
+       the vertical padding is kept in line with the closeable shortcode */
+    padding: 0.65rem 0.9rem;
     color: var(--content);
+  }
+
+  .tip__body > :first-child {
+    margin-top: 0;
   }
 
   .tip__body > :last-child {

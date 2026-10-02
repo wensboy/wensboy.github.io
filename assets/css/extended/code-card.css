@@ -1,5 +1,9 @@
-/* Extension: status bar (lang + copy button) for markdown fenced code blocks.
-   Rendered by layouts/_markup/render-codeblock.html */
+/* Extension: code containers of the theme.
+   - .code-card  : status bar (lang + copy button) of markdown fenced code blocks,
+                   rendered by layouts/_markup/render-codeblock.html
+   - .code-copy  : copy button shared with the codeblock shortcode
+                   (layouts/partials/code_copy_button.html)
+   - .codeblock  : theme-aware colours of the codeblock shortcode */
 
 .code-card {
     margin: 1rem 0 var(--content-gap);
@@ -42,7 +46,9 @@
     text-transform: lowercase;
 }
 
-.code-card__copy {
+/* copy button, shared by .code-card (markdown code blocks) and .codeblock (codeblock shortcode).
+   Markup is rendered by layouts/partials/code_copy_button.html */
+.code-copy {
     display: inline-flex;
     flex: 0 0 auto;
     align-items: center;
@@ -59,37 +65,37 @@
     transition: color 120ms ease, background-color 120ms ease, opacity 120ms ease;
 }
 
-.code-card__copy:hover,
-.code-card__copy:focus-visible {
+.code-copy:hover,
+.code-copy:focus-visible {
     color: var(--primary);
     background: var(--tertiary);
     opacity: 1;
 }
 
-.code-card__copy:focus-visible {
+.code-copy:focus-visible {
     outline: 2px solid var(--secondary);
     outline-offset: -2px;
 }
 
-.code-card__icon {
+.code-copy__icon {
     width: 1rem;
     height: 1rem;
 }
 
-.code-card__icon--done {
+.code-copy__icon--done {
     display: none;
 }
 
-.code-card__copy.is-copied {
+.code-copy.is-copied {
     color: var(--primary);
     opacity: 1;
 }
 
-.code-card__copy.is-copied .code-card__icon--copy {
+.code-copy.is-copied .code-copy__icon--copy {
     display: none;
 }
 
-.code-card__copy.is-copied .code-card__icon--done {
+.code-copy.is-copied .code-copy__icon--done {
     display: block;
 }
 
@@ -112,9 +118,36 @@
     border-radius: 0;
 }
 
+/* the code body background/foreground follows the theme, for markdown code blocks
+   (.code-card) as well as for the codeblock shortcode (.codeblock).
+   The palettes themselves live in code-chroma-light.css / code-chroma-dark.css. */
+html:not([data-theme="dark"]) :is(.code-card, .codeblock) .highlight:not(table),
+html:not([data-theme="dark"]) :is(.code-card, .codeblock) .highlighttable,
+html:not([data-theme="dark"]) :is(.code-card, .codeblock) .highlighttable td,
+html:not([data-theme="dark"]) .codeblock__panes,
+html:not([data-theme="dark"]) .codeblock__pane {
+    background: #fafafa !important;
+}
+
+html:not([data-theme="dark"]) :is(.code-card, .codeblock) pre code {
+    color: #272822;
+    background: #fafafa !important;
+}
+
+html[data-theme="dark"] :is(.code-card, .codeblock) .highlight:not(table),
+html[data-theme="dark"] :is(.code-card, .codeblock) .highlighttable,
+html[data-theme="dark"] :is(.code-card, .codeblock) .highlighttable td {
+    background: var(--code-block-bg) !important;
+}
+
+html[data-theme="dark"] :is(.code-card, .codeblock) pre code {
+    color: #f8f8f2;
+    background: var(--code-block-bg) !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
     .code-card,
-    .code-card__copy {
+    .code-copy {
         transition: none;
     }
 }

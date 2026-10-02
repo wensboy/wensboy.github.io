@@ -69,8 +69,14 @@
 
   .closeable__body {
     margin: 0 0.9rem;
-    padding: 0.2rem 0 0.85rem 1.65rem;
+    /* 0.2rem + the 0.45rem of the summary keep the gap above the content in line
+       with the 0.65rem kept below it */
+    padding: 0.2rem 0 0.65rem;
     color: var(--content);
+  }
+
+  .closeable__body > :first-child {
+    margin-top: 0;
   }
 
   .closeable__body > :last-child {

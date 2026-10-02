@@ -1,0 +1,90 @@
+/* Extension: syntax highlighting palette for the light theme.
+ *
+ * The code block render hook and the codeblock shortcode ask Hugo for CSS classes instead of
+ * inline styles, so the code body can follow the theme toggle. Generated from
+ * `hugo gen chromastyles --style=monokailight` (backgrounds excluded), every selector scoped to
+ * the light theme and to the code containers: `.code-card` (markdown fenced code blocks) and
+ * `.codeblock` (the codeblock shortcode).
+ */
+
+html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma { color: #272822; }
+
+/* The theme ships a single (dark) chroma palette which it applies globally; neutralize
+   it inside the code containers so that only the palette above is in effect. */
+html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma [class] {
+    color: inherit;
+    background-color: transparent;
+}
+
+/* Error */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .err { color:#960050;background-color:#1e0010 }
+/* LineLink */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .lnlinks { outline:none;text-decoration:none;color:inherit }
+/* LineTableTD */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .lntd { vertical-align:top;padding:0;margin:0;border:0; }
+/* LineTable */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .lntable { border-spacing:0;padding:0;margin:0;border:0; }
+/* LineHighlight */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .hl { background-color:#e1e1e1 }
+/* LineNumbersTable */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .lnt { white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f }
+/* LineNumbers */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .ln { white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f }
+/* Line */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .line { display:flex; }
+/* Keyword */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .k { color:#00a8c8 }
+/* KeywordConstant */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .kc { color:#00a8c8 }
+/* KeywordDeclaration */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .kd { color:#00a8c8 }
+/* KeywordNamespace */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .kn { color:#f92672 }
+/* KeywordPseudo */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .kp { color:#00a8c8 }
+/* KeywordReserved */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .kr { color:#00a8c8 }
+/* KeywordType */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .kt { color:#00a8c8 }
+/* Name */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .n { color:#111 }
+/* NameAttribute */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .na { color:#75af00 }
+/* NameClass */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .nc { color:#75af00 }
+/* NameConstant */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .no { color:#00a8c8 }
+/* NameDecorator */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .nd { color:#75af00 }
+/* NameEntity */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .ni { color:#111 }
+/* NameException */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .ne { color:#75af00 }
+/* NameLabel */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .nl { color:#111 }
+/* NameNamespace */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .nn { color:#111 }
+/* NameOther */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .nx { color:#75af00 }
+/* NameProperty */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .py { color:#111 }
+/* NameTag */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .nt { color:#f92672 }
+/* NameBuiltin */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .nb { color:#111 }
+/* NameBuiltinPseudo */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .bp { color:#111 }
+/* NameVariable */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .nv { color:#111 }
+/* NameVariableClass */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .vc { color:#111 }
+/* NameVariableGlobal */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .vg { color:#111 }
+/* NameVariableInstance */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .vi { color:#111 }
+/* NameVariableMagic */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .vm { color:#111 }
+/* NameFunction */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .nf { color:#75af00 }
+/* NameFunctionMagic */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .fm { color:#75af00 }
+/* Literal */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .l { color:#ae81ff }
+/* LiteralDate */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .ld { color:#d88200 }
+/* LiteralString */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .s { color:#d88200 }
+/* LiteralStringAffix */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .sa { color:#d88200 }
+/* LiteralStringBacktick */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .sb { color:#d88200 }
+/* LiteralStringChar */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .sc { color:#d88200 }
+/* LiteralStringDelimiter */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .dl { color:#d88200 }
+/* LiteralStringDoc */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .sd { color:#d88200 }
+/* LiteralStringDouble */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .s2 { color:#d88200 }
+/* LiteralStringEscape */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .se { color:#8045ff }
+/* LiteralStringHeredoc */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .sh { color:#d88200 }
+/* LiteralStringInterpol */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .si { color:#d88200 }
+/* LiteralStringOther */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .sx { color:#d88200 }
+/* LiteralStringRegex */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .sr { color:#d88200 }
+/* LiteralStringSingle */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .s1 { color:#d88200 }
+/* LiteralStringSymbol */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .ss { color:#d88200 }
+/* LiteralNumber */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .m { color:#ae81ff }
+/* LiteralNumberBin */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .mb { color:#ae81ff }
+/* LiteralNumberFloat */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .mf { color:#ae81ff }
+/* LiteralNumberHex */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .mh { color:#ae81ff }
+/* LiteralNumberInteger */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .mi { color:#ae81ff }
+/* LiteralNumberIntegerLong */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .il { color:#ae81ff }
+/* LiteralNumberOct */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .mo { color:#ae81ff }
+/* Operator */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .o { color:#f92672 }
+/* OperatorWord */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .ow { color:#f92672 }
+/* OperatorReserved */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .or { color:#f92672 }
+/* Punctuation */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .p { color:#111 }
+/* Comment */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .c { color:#75715e }
+/* CommentHashbang */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .ch { color:#75715e }
+/* CommentMultiline */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .cm { color:#75715e }
+/* CommentSingle */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .c1 { color:#75715e }
+/* CommentSpecial */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .cs { color:#75715e }
+/* CommentPreproc */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .cp { color:#75715e }
+/* CommentPreprocFile */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .cpf { color:#75715e }
+/* GenericEmph */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .ge { font-style:italic }
+/* GenericStrong */ html:not([data-theme="dark"]) :is(.code-card, .codeblock) .chroma .gs { font-weight:bold }

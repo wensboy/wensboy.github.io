@@ -35,6 +35,15 @@ current:
 2. language label.
 3. **Copy** icon button.
 
+```cpp
+#include<iostream>
+using namespace std;
+
+int main() {
+  cout << "it looks like this!" << '\n';
+}
+```
+
 # layout::partials
 
 ## comments
@@ -72,7 +81,7 @@ This blog uses the [Giscus](https://giscus.app/) comment system.
 ## codeblock
 
 ```html
-< codeblock syntax=true tab-position="top" overflow="scroll" >
+< codeblock syntax=true tab-position="top" overflow="scroll" copy=true >
 
 ---go
 func main() {
@@ -96,8 +105,9 @@ console.log("hello world!\n")
 |syntax|false, true|syntax highlight|
 |tab-position| "top, bottom, left, right" | tab position |
 |overflow| "scroll, switch" | overflow tab render |
+|copy| false, true | enable copy or not |
 
-{{< codeblock syntax=true tab-position="top" overflow="scroll" >}}
+{{< codeblock syntax=true tab-position="top" overflow="scroll" copy=true >}}
 
 ---go
 func main() {

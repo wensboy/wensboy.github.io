@@ -2,7 +2,8 @@
 {{- /*     Insert any custom code web-analytics, resources, etc. here */ -}}
 {{- /* Footer custom content area end */ -}}
 
-{{- /* Extension: copy button of markdown code blocks (see layouts/_markup/render-codeblock.html) */ -}}
+{{- /* Extension: copy button of the code containers (.code-card / .codeblock).
+       Markup: layouts/partials/code_copy_button.html */ -}}
 <script>
     (() => {
         const writeClipboard = (text) => {
@@ -29,11 +30,21 @@
             });
         };
 
-        const initCodeCards = () => {
-            document.querySelectorAll("[data-code-card]").forEach((card) => {
-                const button = card.querySelector("[data-code-copy]");
-                const code = card.querySelector("pre code");
-                if (!button || !code || button.dataset.ready) return;
+        // .code-card holds a single code block, while the codeblock shortcode keeps one copy
+        // button per tab bar: always copy the code of the currently visible pane.
+        const resolveCode = (container) => {
+            const panes = container.querySelectorAll("[data-codeblock-pane]");
+            const pane = panes.length
+                ? [...panes].find((item) => !item.hidden) || panes[0]
+                : container;
+            return pane.querySelector("pre code");
+        };
+
+        const initCodeCopy = () => {
+            document.querySelectorAll("[data-code-copy]").forEach((button) => {
+                if (button.dataset.ready) return;
+                const container = button.closest("[data-code-card], [data-codeblock]");
+                if (!container) return;
                 button.dataset.ready = "true";
 
                 const idleLabel = button.getAttribute("aria-label") || "Copy code";
@@ -41,6 +52,9 @@
                 let timer;
 
                 button.addEventListener("click", () => {
+                    const code = resolveCode(container);
+                    if (!code) return;
+
                     writeClipboard(code.textContent).then(() => {
                         button.classList.add("is-copied");
                         button.setAttribute("aria-label", doneLabel);
@@ -57,9 +71,9 @@
         };
 
         if (document.readyState === "loading") {
-            document.addEventListener("DOMContentLoaded", initCodeCards, { once: true });
+            document.addEventListener("DOMContentLoaded", initCodeCopy, { once: true });
         } else {
-            initCodeCards();
+            initCodeCopy();
         }
     })();
 </script>

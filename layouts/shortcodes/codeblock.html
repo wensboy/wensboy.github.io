@@ -1,6 +1,9 @@
+{{- /* note: unquoted shortcode params are type-inferred, so `false` / `0` arrive as bool / int
+       and a missing param is reported as nil or ""; compare the string form so that both work. */ -}}
+{{- $syntaxRaw := printf "%v" (.Get "syntax") -}}
 {{- $syntax := true -}}
-{{- with .Get "syntax" -}}
-  {{- $syntax = in (slice true "true" "TRUE" "True" 1 "1") . -}}
+{{- if not (in (slice "<nil>" "") $syntaxRaw) -}}
+  {{- $syntax = in (slice "true" "TRUE" "True" "1") $syntaxRaw -}}
 {{- end -}}
 {{- $position := lower (.Get "tab-position" | default "top") -}}
 {{- if not (in (slice "top" "bottom" "left" "right") $position) -}}
@@ -11,6 +14,11 @@
 {{- if not (in (slice "scroll" "switch") $overflow) -}}
   {{- warnf "invalid value for param 'overflow': %q at %s" $overflow .Position -}}
   {{- $overflow = "scroll" -}}
+{{- end -}}
+{{- $copyRaw := printf "%v" (.Get "copy") -}}
+{{- $copy := true -}}
+{{- if not (in (slice "<nil>" "") $copyRaw) -}}
+  {{- $copy = in (slice "true" "TRUE" "True" "1") $copyRaw -}}
 {{- end -}}
 {{- $blocks := findRESubmatch `(?ms)^---([A-Za-z0-9_+.#/-]+)[ \t]*\r?\n(.*?)\r?\n---[ \t]*(?:\r?\n|$)` .Inner -}}
 {{- $isVertical := in (slice "left" "right") $position -}}
@@ -164,6 +172,18 @@
 
   [data-theme="dark"] .codeblock__select {
     background: var(--code-bg);
+  }
+
+  .codeblock__tabs .code-copy {
+    align-self: center;
+    margin-inline-start: auto;
+    margin-inline-end: 0.25rem;
+  }
+
+  .codeblock--left .codeblock__tabs .code-copy,
+  .codeblock--right .codeblock__tabs .code-copy {
+    margin-inline: 0;
+    margin-block: 0.25rem;
   }
 
   .codeblock__panes {
@@ -379,6 +399,7 @@
     {{- if eq $overflow "switch" -}}
       <select class="codeblock__select" aria-label="More code tabs" data-codeblock-select hidden></select>
     {{- end -}}
+    {{- if $copy }}{{ partial "code_copy_button.html" . }}{{- end }}
   </div>
   {{- end -}}
   <div class="codeblock__panes">
@@ -389,7 +410,8 @@
       {{- $paneID := printf "%s-pane-%d" $id $index -}}
       <div id="{{ $paneID }}" class="codeblock__pane" role="tabpanel" aria-labelledby="{{ $tabID }}" data-codeblock-pane data-index="{{ $index }}"{{ if ne $index 0 }} hidden{{ end }}>
         {{- if $syntax -}}
-          {{- highlight $code $lang "" -}}
+          {{- /* pass CSS classes (instead of inline styles) so the palette can follow the theme */ -}}
+          {{- highlight $code $lang (dict "noClasses" false) -}}
         {{- else -}}
           <pre><code class="language-{{ $lang | anchorize }}">{{ $code }}</code></pre>
         {{- end -}}
@@ -408,6 +430,7 @@
     {{- if eq $overflow "switch" -}}
       <select class="codeblock__select" aria-label="More code tabs" data-codeblock-select hidden></select>
     {{- end -}}
+    {{- if $copy }}{{ partial "code_copy_button.html" . }}{{- end }}
   </div>
   {{- end -}}
 </div>
