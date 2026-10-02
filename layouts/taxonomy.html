@@ -1,0 +1,33 @@
+{{- define "main" }}
+
+{{- if .Title }}
+<header class="page-header">
+    <h1>{{ .Title }}</h1>
+    {{- if .Description }}
+    <div class="post-description">
+        {{ .Description }}
+    </div>
+    {{- end }}
+</header>
+{{- end }}
+
+{{- /* Override of the theme: the term name and its count become two cells of the item,
+       separated by a vertical rule instead of nesting the count in <sup> elements
+       (which used to stretch the item box). Styling: assets/css/extended/terms.css */ -}}
+<ul class="terms-tags">
+    {{- $type := .Type }}
+    {{- range $key, $value := .Data.Terms.Alphabetical }}
+        {{- $name := .Name }}
+        {{- $count := .Count }}
+        {{- with site.GetPage (printf "/%s/%s" $type $name) }}
+        <li>
+            <a href="{{ .Permalink }}">
+                <span class="terms-tags__name">{{ .LinkTitle }}</span>
+                <span class="terms-tags__count">{{ $count }}</span>
+            </a>
+        </li>
+        {{- end }}
+    {{- end }}
+</ul>
+
+{{- end }}{{/* end main */ -}}
