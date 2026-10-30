@@ -8,7 +8,7 @@ comments: false
 date: '2026-10-30'
 author: ["wendisx"]
 title: 'Go Std - text/template'
-tags: []
+tags: ["golang"]
 cover:
   image: ""
   alt: ""
