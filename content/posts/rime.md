@@ -78,4 +78,4 @@ Simply use `fcitx5-configuration` and do the following:
 4. Additional configuration for display session environment
 
 For some commonly used desktop environments, the current relatively stable processing methods are recorded:
-- `GNOME` : `gnome-shell-extension-kimpanel`
+- `GNOME` : `gnome-shell-extension-kimpanel`; [theme: tokyo-night](https://github.com/wensboy/dotfiles/blob/main/gnome/gnome-shell/kimpanel/stylesheet.css)
