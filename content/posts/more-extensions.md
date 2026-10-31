@@ -1,8 +1,9 @@
 ---
 draft: false
 searchHidden: false
-ShowToc: true
+ShowToc: false
 TocOpen: false
+TocFloat: true
 ShowBreadCrumbs: true
 comments: true
 date: '2026-06-18'
@@ -20,9 +21,9 @@ editPost:
   appendFilePath: true
 ---
 
-# layout::_markup
+## layout::_markup
 
-## native codeblock
+### native codeblock
 
 issues:
 
@@ -44,15 +45,19 @@ int main() {
 }
 ```
 
-# layout::partials
+## layout::partials
 
-## comments
+### comments
 
 This blog uses the [Giscus](https://giscus.app/) comment system.
 
-# layout::shortcodes
+### toc_float
 
-## closeable
+Displayed independently of the pinned TOC configuration. this is primarily used for quick navigation to headings within the page.
+
+## layout::shortcodes
+
+### closeable
 
 ```html
 < closeable open=false class="" hint="" >
@@ -78,7 +83,7 @@ This blog uses the [Giscus](https://giscus.app/) comment system.
 - c/cpp
 {{< /closeable >}}
 
-## codeblock
+### codeblock
 
 ```html
 < codeblock syntax=true tab-position="top" overflow="scroll" copy=true >
@@ -125,7 +130,7 @@ console.log("hello world!\n")
 
 {{< /codeblock >}}
 
-## tip
+### tip
 
 ```html
 < tip type="" class="" topic="" >
@@ -160,7 +165,7 @@ this is danger tip
 
 
 
-## tldr
+### tldr
 
 ```html
 < tldr class="" >

@@ -1,8 +1,9 @@
 ---
 draft: false
 searchHidden: false
-ShowToc: true
+ShowToc: false
 TocOpen: false
+TocFloat: true
 ShowBreadCrumbs: false
 comments: false
 date: '2026-10-30'

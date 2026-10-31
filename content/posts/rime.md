@@ -3,6 +3,7 @@ draft: false
 searchHidden: false
 ShowToc: true
 TocOpen: false
+TocFloat: true
 ShowBreadCrumbs: true
 comments: true
 date: '2026-06-18'
