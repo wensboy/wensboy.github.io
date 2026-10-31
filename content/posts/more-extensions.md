@@ -163,7 +163,31 @@ this is warn tip
 this is danger tip
 {{< /tip >}}
 
+### tooltip
 
+```html
+< tooltip word="" class="" position="">
+...
+< /tooltip >
+```
+
+|attribute|value|description|
+|:-:|:-:|:-:|
+|word| "" | modified word |
+|class| "" | render style |
+|position| `<left, up, right, down>-<start, center, end>`  | control display orientation |
+
+hover {{< tooltip word="this way" class="" position="up-center" >}}this is tooltip show...{{< /tooltip >}} to see it.
+
+all directions:
+
+up: {{< tooltip word="start" position="up-start" >}}up-start{{< /tooltip >}} · {{< tooltip word="center" position="up-center" >}}up-center{{< /tooltip >}} · {{< tooltip word="end" position="up-end" >}}up-end{{< /tooltip >}}
+
+down: {{< tooltip word="start" position="down-start" >}}down-start{{< /tooltip >}} · {{< tooltip word="center" position="down-center" >}}down-center{{< /tooltip >}} · {{< tooltip word="end" position="down-end" >}}down-end{{< /tooltip >}}
+
+left: {{< tooltip word="start" position="left-start" >}}left-start{{< /tooltip >}} · {{< tooltip word="center" position="left-center" >}}left-center{{< /tooltip >}} · {{< tooltip word="end" position="left-end" >}}left-end{{< /tooltip >}}
+
+right: {{< tooltip word="start" position="right-start" >}}right-start{{< /tooltip >}} · {{< tooltip word="center" position="right-center" >}}right-center{{< /tooltip >}} · {{< tooltip word="end" position="right-end" >}}right-end{{< /tooltip >}}
 
 ### tldr
 

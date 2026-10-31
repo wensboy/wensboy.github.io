@@ -1,0 +1,190 @@
+{{- /* Shortcode: tooltip
+
+       < tooltip word="" class="" position="" >...< /tooltip >
+
+       The word is underlined with a dashed line; hovering it (or focusing it) pops a bubble
+       on the side given by "position".
+
+       The styles are inlined here (like the tip / tldr / closeable shortcodes) and emitted
+       once per page. Note the trade-off: this shortcode is inline content, so when it is
+       used inside a sentence the <style> element ends up inside the surrounding <p>, which
+       is not valid nesting (browsers still apply it). The alternative - shipping the rules
+       in assets/css/extended/ - keeps the markup clean but loads them on every page and
+       they are then edited away from the shortcode that owns them. */ -}}
+{{- $word := .Get "word" | default "" -}}
+{{- if not $word -}}
+  {{- warnf "missing value for param 'word': %s" .Position -}}
+{{- end -}}
+{{- $class := .Get "class" | default "" -}}
+
+{{- /* position: <left, up, right, down>-<start, center, end> */ -}}
+{{- $position := lower (.Get "position" | default "up-center") -}}
+{{- $parts := split $position "-" -}}
+{{- $side := index $parts 0 -}}
+{{- $align := "center" -}}
+{{- if gt (len $parts) 1 -}}
+  {{- $align = index $parts 1 -}}
+{{- end -}}
+{{- if not (in (slice "left" "up" "right" "down") $side) -}}
+  {{- warnf "invalid value for param 'position' (side): %q at %s" $side .Position -}}
+  {{- $side = "up" -}}
+{{- end -}}
+{{- if not (in (slice "start" "center" "end") $align) -}}
+  {{- warnf "invalid value for param 'position' (align): %q at %s" $align .Position -}}
+  {{- $align = "center" -}}
+{{- end -}}
+{{- $position = printf "%s-%s" $side $align -}}
+
+{{- /* the body is inline content: drop the paragraph markdownify wraps around it, it would
+       otherwise close the paragraph the tooltip lives in */ -}}
+{{- $body := .Inner | markdownify -}}
+{{- if eq (len (findRE `<p[ >]` $body)) 1 -}}
+  {{- $body = $body | replaceRE `(?s)^\s*<p.*?>(.*)</p>\s*$` `$1` -}}
+{{- end -}}
+
+{{- if not (.Page.Scratch.Get "tooltip-shortcode-style") -}}
+  {{- .Page.Scratch.Set "tooltip-shortcode-style" true -}}
+<style>
+  .tooltip {
+    position: relative;
+    display: inline-block;
+  }
+
+  .tooltip__word {
+    color: inherit;
+    text-decoration: underline dashed;
+    text-decoration-color: var(--secondary);
+    text-underline-offset: 0.2rem;
+    cursor: help;
+  }
+
+  .tooltip__word:focus-visible {
+    color: var(--primary);
+    outline: 2px solid var(--secondary);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  .tooltip__bubble {
+    position: absolute;
+    z-index: 20;
+    width: max-content;
+    max-width: min(20rem, 70vw);
+    padding: 0.4rem 0.65rem;
+    color: var(--content);
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: 0 6px 18px rgb(0 0 0 / 14%);
+    font-size: 0.85rem;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: start;
+    opacity: 0;
+    visibility: hidden;
+    scale: 0.97;
+    transition: opacity 140ms ease, scale 140ms ease, visibility 140ms ease;
+  }
+
+  [data-theme="dark"] .tooltip__bubble {
+    background: var(--entry);
+  }
+
+  /* bridges the gap between the word and the bubble: without it the pointer leaves .tooltip
+     while crossing the gap and the bubble flickers away before it can be reached */
+  .tooltip__bubble::before {
+    content: "";
+    position: absolute;
+    /* keep in sync with the 0.22rem gap of the sides below */
+    inset: -0.22rem;
+  }
+
+  .tooltip__bubble > :first-child {
+    margin-top: 0;
+  }
+
+  .tooltip__bubble > :last-child {
+    margin-bottom: 0;
+  }
+
+  /* main axis: the bubble sits on the given side of the word, with a small gap in between */
+  .tooltip[data-position^="up"] .tooltip__bubble {
+    bottom: 100%;
+    margin-bottom: 0.22rem;
+  }
+
+  .tooltip[data-position^="down"] .tooltip__bubble {
+    top: 100%;
+    margin-top: 0.22rem;
+  }
+
+  .tooltip[data-position^="left"] .tooltip__bubble {
+    right: 100%;
+    margin-inline-end: 0.22rem;
+  }
+
+  .tooltip[data-position^="right"] .tooltip__bubble {
+    left: 100%;
+    margin-inline-start: 0.22rem;
+  }
+
+  /* cross axis of the up / down bubbles */
+  .tooltip[data-position^="up"][data-position$="start"] .tooltip__bubble,
+  .tooltip[data-position^="down"][data-position$="start"] .tooltip__bubble {
+    left: 0;
+  }
+
+  .tooltip[data-position^="up"][data-position$="center"] .tooltip__bubble,
+  .tooltip[data-position^="down"][data-position$="center"] .tooltip__bubble {
+    left: 50%;
+    translate: -50% 0;
+  }
+
+  .tooltip[data-position^="up"][data-position$="end"] .tooltip__bubble,
+  .tooltip[data-position^="down"][data-position$="end"] .tooltip__bubble {
+    right: 0;
+  }
+
+  /* cross axis of the left / right bubbles */
+  .tooltip[data-position^="left"][data-position$="start"] .tooltip__bubble,
+  .tooltip[data-position^="right"][data-position$="start"] .tooltip__bubble {
+    top: 0;
+  }
+
+  .tooltip[data-position^="left"][data-position$="center"] .tooltip__bubble,
+  .tooltip[data-position^="right"][data-position$="center"] .tooltip__bubble {
+    top: 50%;
+    translate: 0 -50%;
+  }
+
+  .tooltip[data-position^="left"][data-position$="end"] .tooltip__bubble,
+  .tooltip[data-position^="right"][data-position$="end"] .tooltip__bubble {
+    bottom: 0;
+  }
+
+  @media (hover: hover) {
+    .tooltip:hover .tooltip__bubble {
+      opacity: 1;
+      visibility: visible;
+      scale: 1;
+    }
+  }
+
+  /* keyboard (and touch): the word is focusable */
+  .tooltip:focus-within .tooltip__bubble {
+    opacity: 1;
+    visibility: visible;
+    scale: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tooltip__bubble {
+      transition: none;
+    }
+  }
+</style>
+{{- end -}}
+
+<span class="tooltip{{ with $class }} {{ . }}{{ end }}" data-position="{{ $position }}"><span
+    class="tooltip__word" tabindex="0" aria-describedby="tooltip-{{ .Ordinal }}">{{ $word | markdownify }}</span><span
+    class="tooltip__bubble" id="tooltip-{{ .Ordinal }}" role="tooltip">{{- $body -}}</span></span>
