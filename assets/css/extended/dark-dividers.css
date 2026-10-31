@@ -1,0 +1,22 @@
+/* Extension: dark mode dividers.
+
+   The stock dark palette draws 1px separators with --border: rgb(51, 51, 51) on a
+   rgb(29, 30, 32) background, which is almost invisible. Lift both divider tokens so
+   card outlines, table rules, archive rules and <hr> stay readable without turning
+   into bright frames. --tertiary is the heavier divider (hr, pill/button fill, hover
+   outline), --border is the 1px hairline. */
+
+:root[data-theme="dark"] {
+    --border: rgb(84, 86, 91);
+    --tertiary: rgb(104, 107, 114);
+}
+
+/* Without JS the theme applies its dark palette from a <noscript> block that is printed
+   after the stylesheet, using a plain :root selector. Match it with an attribute selector
+   (higher specificity) so these values win in that case as well. */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+        --border: rgb(84, 86, 91);
+        --tertiary: rgb(104, 107, 114);
+    }
+}

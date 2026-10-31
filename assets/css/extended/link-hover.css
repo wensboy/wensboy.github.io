@@ -1,0 +1,65 @@
+/* Extension: hover effect for underline based text links.
+
+   Default state keeps the underline exactly as the theme renders it. On hover a solid
+   fill rises from the underline up to the top of the text, and the label flips to the
+   page background colour (inverted), so the link reads as a solid block. */
+
+:root {
+    /* colour of the rising fill / colour of the label once the fill is up */
+    --link-fill: var(--primary);
+    --link-fill-text: var(--theme);
+    --link-fill-motion: 0.24s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.md-content a:not(.anchor),
+.post-meta a,
+.breadcrumbs a,
+.toc a,
+.footer a {
+    /* bleed the box slightly wider than the glyphs without shifting the surrounding text */
+    padding-inline: 0.12em;
+    margin-inline: -0.12em;
+    /* stretch the padding box down to the underline: that is where the fill starts */
+    padding-block-end: 0.3rem;
+    background-image: linear-gradient(var(--link-fill), var(--link-fill));
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 100% 0;
+    border-radius: 3px;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    transition: background-size var(--link-fill-motion), color var(--link-fill-motion);
+}
+
+.md-content a:not(.anchor):hover,
+.md-content a:not(.anchor):focus-visible,
+.post-meta a:hover,
+.post-meta a:focus-visible,
+.breadcrumbs a:hover,
+.breadcrumbs a:focus-visible,
+.toc a:hover,
+.toc a:focus-visible,
+.footer a:hover,
+.footer a:focus-visible {
+    background-size: 100% 100%;
+    color: var(--link-fill-text);
+}
+
+/* linked images (e.g. a linked figure) must not be covered by the fill */
+.md-content a:not(.anchor):has(img),
+.md-content a:not(.anchor):has(img):hover,
+.md-content a:not(.anchor):has(img):focus-visible {
+    background-image: none;
+    padding-block-end: 0;
+    color: var(--primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .md-content a:not(.anchor),
+    .post-meta a,
+    .breadcrumbs a,
+    .toc a,
+    .footer a {
+        transition: none;
+    }
+}
