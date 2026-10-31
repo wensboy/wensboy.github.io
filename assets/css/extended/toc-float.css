@@ -3,11 +3,18 @@
 
    A round button pinned to the bottom right corner of the post, right above the theme's
    "go to top" link (bottom: 4rem, 2.5rem tall). The panel opens above the button and grows
-   towards the left, staying inside the viewport. */
+   towards the left, staying inside the viewport.
+
+   Both floating buttons share one vertical line: --float-right is the offset of this button
+   and the "go to top" link is aligned to it. */
+
+:root {
+    --float-right: 2rem;
+}
 
 .toc-float {
     position: fixed;
-    right: 2rem;
+    right: var(--float-right);
     bottom: 7.5rem;
     z-index: 99;
     display: flex;
@@ -113,10 +120,19 @@
 }
 
 @media screen and (max-width: 768px) {
+    :root {
+        --float-right: 1rem;
+    }
+
     .toc-float {
-        right: 1rem;
         bottom: 7rem;
     }
+}
+
+/* the theme pins the "go to top" link at right: 2rem; follow the toc button instead so the
+   two stay on one vertical line at every width */
+.top-link {
+    right: var(--float-right);
 }
 
 @media (prefers-reduced-motion: reduce) {
