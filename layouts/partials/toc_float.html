@@ -1,0 +1,91 @@
+{{- /* Extension: floating table of contents (front matter: TocFloat: true).
+
+       Renders a round button pinned to the bottom right corner of a post, using the same
+       footprint as the theme's "go to top" link. Clicking it expands the table of contents
+       to the left of the button; picking an entry jumps to that heading.
+
+       Injected through single.html -> partial "extend_post_content.html" (a per-page hook,
+       so it is never baked into the cached footer). */ -}}
+{{- if and (eq .Kind "page") (.Param "TocFloat") -}}
+{{- $tocLabel := i18n "toc" | default "Table of Contents" -}}
+{{- /* drop the id of the built-in TOC nav, it must stay unique on the page */ -}}
+{{- $toc := .TableOfContents | replaceRE `id="TableOfContents"` "" | safeHTML -}}
+{{- if gt (len $toc) 0 -}}
+<nav class="toc-float" id="toc-float" aria-label="{{ $tocLabel }}">
+    <div class="toc-float-panel" id="toc-float-panel">
+        <div class="toc-float-panel__title">{{ $tocLabel }}</div>
+        <div class="toc-float-panel__body">
+            {{- $toc -}}
+        </div>
+    </div>
+    <button class="toc-float-btn" id="toc-float-btn" type="button" aria-expanded="false"
+        aria-controls="toc-float-panel" aria-label="{{ $tocLabel }}" title="{{ $tocLabel }}">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="8" y1="6" x2="21" y2="6"></line>
+            <line x1="8" y1="12" x2="21" y2="12"></line>
+            <line x1="8" y1="18" x2="21" y2="18"></line>
+            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+        </svg>
+    </button>
+</nav>
+<script>
+    (() => {
+        const root = document.getElementById("toc-float");
+        const button = document.getElementById("toc-float-btn");
+        const panel = document.getElementById("toc-float-panel");
+        if (!root || !button || !panel) return;
+
+        const entries = Array.from(panel.querySelectorAll('a[href^="#"]'))
+            .map((link) => {
+                const id = decodeURIComponent(link.getAttribute("href").slice(1));
+                return { link: link, heading: document.getElementById(id) };
+            })
+            .filter((entry) => entry.heading);
+
+        const setOpen = (open) => {
+            root.classList.toggle("is-open", open);
+            button.setAttribute("aria-expanded", open ? "true" : "false");
+        };
+
+        button.addEventListener("click", (event) => {
+            event.stopPropagation();
+            setOpen(!root.classList.contains("is-open"));
+        });
+
+        // picking a heading jumps there and closes the panel again
+        entries.forEach((entry) => entry.link.addEventListener("click", () => setOpen(false)));
+
+        document.addEventListener("click", (event) => {
+            if (!root.contains(event.target)) setOpen(false);
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") setOpen(false);
+        });
+
+        // keep the entry of the heading that is currently at the top of the viewport marked
+        let scheduled = false;
+        const markActive = () => {
+            scheduled = false;
+            let current = null;
+            entries.forEach((entry) => {
+                if (entry.heading.getBoundingClientRect().top <= 120) current = entry;
+            });
+            entries.forEach((entry) => entry.link.classList.toggle("is-active", entry === current));
+        };
+        const onScroll = () => {
+            if (scheduled) return;
+            scheduled = true;
+            requestAnimationFrame(markActive);
+        };
+
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("resize", onScroll);
+        markActive();
+    })();
+</script>
+{{- end -}}
+{{- end -}}

@@ -1,0 +1,133 @@
+/* Extension: floating table of contents button (TocFloat: true).
+   Markup: layouts/partials/toc_float.html, injected by layouts/partials/extend_post_content.html.
+
+   A round button pinned to the bottom right corner of the post, right above the theme's
+   "go to top" link (bottom: 4rem, 2.5rem tall). The panel opens above the button and grows
+   towards the left, staying inside the viewport. */
+
+.toc-float {
+    position: fixed;
+    right: 2rem;
+    bottom: 7.5rem;
+    z-index: 99;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.6rem;
+}
+
+.toc-float-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 10px;
+    border-radius: 64px;
+    background: var(--tertiary);
+    color: var(--secondary);
+    box-shadow: 0 2px 8px rgb(0 0 0 / 12%);
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.toc-float-btn svg {
+    width: 100%;
+    height: 100%;
+}
+
+.toc-float-btn:hover,
+.toc-float-btn:focus-visible,
+.toc-float.is-open .toc-float-btn {
+    background: var(--primary);
+    color: var(--theme);
+    transform: translateY(-2px);
+}
+
+.toc-float-panel {
+    width: min(320px, calc(100vw - 4rem));
+    max-height: min(60vh, 26rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 0.7rem 0.9rem;
+    background: var(--entry);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: 0 8px 24px rgb(0 0 0 / 18%);
+    font-size: 14px;
+    line-height: 1.5;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(6px) scale(0.98);
+    transform-origin: bottom right;
+    transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s ease;
+}
+
+.toc-float.is-open .toc-float-panel {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+}
+
+.toc-float-panel__title {
+    margin-bottom: 0.4rem;
+    color: var(--secondary);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.toc-float-panel ul {
+    list-style: none;
+    margin: 0;
+    padding-inline-start: 0.9rem;
+}
+
+.toc-float-panel__body>nav>ul {
+    padding-inline-start: 0;
+}
+
+.toc-float-panel li {
+    margin-top: 0.25rem;
+}
+
+.toc-float-panel a {
+    display: block;
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    color: var(--secondary);
+    text-decoration: none;
+    transition: color 0.15s ease, background 0.15s ease;
+}
+
+.toc-float-panel a:hover,
+.toc-float-panel a:focus-visible {
+    color: var(--primary);
+    background: var(--code-bg);
+}
+
+.toc-float-panel a.is-active {
+    color: var(--primary);
+    font-weight: 600;
+    background: var(--code-bg);
+}
+
+@media screen and (max-width: 768px) {
+    .toc-float {
+        right: 1rem;
+        bottom: 7rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .toc-float-btn,
+    .toc-float-btn:hover,
+    .toc-float.is-open .toc-float-btn {
+        transform: none;
+    }
+
+    .toc-float-btn,
+    .toc-float-panel {
+        transition: none;
+    }
+}
