@@ -8,8 +8,8 @@ ShowBreadCrumbs: true
 comments: true
 date: '2026-06-18'
 author: ["wendisx"]
-title: 'More Extensions'
-tags: ["hugo", "markdown extensions"]
+title: 'More Theme Extensions'
+tags: ["extensions"]
 cover:
   image: ""
   alt: ""
@@ -67,7 +67,7 @@ Displayed independently of the pinned TOC configuration. this is primarily used 
 
 |attribute|value|description|
 |:-:|:-:|:-:|
-|open|false, true|open status in default|
+|open|`false, true`|open status in default|
 |class| "" | render style |
 |hint| "" | hint text |
 
@@ -107,10 +107,10 @@ console.log("hello world!\n")
 
 |attribute|value|description|
 |:-:|:-:|:-:|
-|syntax|false, true|syntax highlight|
-|tab-position| "top, bottom, left, right" | tab position |
-|overflow| "scroll, switch" | overflow tab render |
-|copy| false, true | enable copy or not |
+|syntax|`false, true`|syntax highlight|
+|tab-position| `top, bottom, left, right` | tab position |
+|overflow| `scroll, switch` | overflow tab render |
+|copy| `false, true` | enable copy or not |
 
 {{< codeblock syntax=true tab-position="top" overflow="scroll" copy=true >}}
 
@@ -140,7 +140,7 @@ console.log("hello world!\n")
 
 |attribute|value|description|
 |:-:|:-:|:-:|
-|type| "quote(gray), info(blue), safe(green), warn(yellow), danger(red)" | tip type | 
+|type| `quote(gray), info(blue), safe(green), warn(yellow), danger(red)` | tip type | 
 |class| "" | render style |
 
 {{< tip type="quote" topic="quote tip" >}}
