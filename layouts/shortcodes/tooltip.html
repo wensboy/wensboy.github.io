@@ -48,6 +48,9 @@
   .tooltip {
     position: relative;
     display: inline-block;
+    /* hug the word: with the inherited 1.6 line-height the box carries the leading of the
+       surrounding text, and the start / end bubbles aligned to it float above the word */
+    line-height: 1;
   }
 
   .tooltip__word {
@@ -56,6 +59,17 @@
     text-decoration-color: var(--secondary);
     text-underline-offset: 0.2rem;
     cursor: help;
+  }
+
+  /* hovering (or focusing) the word turns the dashed underline into a solid one */
+  @media (hover: hover) {
+    .tooltip:hover .tooltip__word {
+      text-decoration-style: solid;
+    }
+  }
+
+  .tooltip:focus-within .tooltip__word {
+    text-decoration-style: solid;
   }
 
   .tooltip__word:focus-visible {
