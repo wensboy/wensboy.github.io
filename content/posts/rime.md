@@ -29,7 +29,7 @@ editPost:
 There is no reason to ignore the relevant input method part in the distribution wiki documentation. Even if it is not explicitly given, you should not rashly follow the steps in the text. You need to judge the correctness and feasibility by yourself. There is no guarantee that it will work normally in any environment.
 {{< /tip >}}
 
-# Installation
+## Installation
 
 Usually `Rime` is combined with the relevant front-end to form a package, which can be found in the package warehouse source of the relevant distribution. The following will list some commonly used installation methods of distributions. The input method front-end uses `fcitx5`.
 
@@ -40,7 +40,7 @@ sudo pacman fcitx5 fcitx5-{qt,gtk,configtool,lua,rime}
 [more details](https://wiki.archlinux.org/title/Fcitx5)
 {{< /closeable >}}
 
-# Configuration
+## Configuration
 
 The core of configuration lies in the following points:
 
@@ -80,3 +80,4 @@ Simply use `fcitx5-configuration` and do the following:
 
 For some commonly used desktop environments, the current relatively stable processing methods are recorded:
 - `GNOME` : `gnome-shell-extension-kimpanel`; [theme: tokyo-night](https://github.com/wensboy/dotfiles/blob/main/gnome/gnome-shell/kimpanel/stylesheet.css)
+- `Most Others`: `fcitx5 classic ui`; [theme: mydotfiles](https://github.com/wensboy/dotfiles.git)
